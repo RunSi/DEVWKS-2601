@@ -1,0 +1,48 @@
+---
+mgmt_ip: 127.0.0.1
+mgmt_interface: GigabitEthernet 1
+netconf_port: 3230
+ssh_port: 3222
+username: vagrant
+password: vagrant
+router_id: 172.16.50.1
+as_number: 200
+remote_as: 100
+neighbor: 192.168.100.20
+ingress_rep: 172.16.10.1
+interfaces:
+  - interface_type: GigabitEthernet
+    interface_id: 2
+    description: Link 2 - Configured by Ansible with Vagrant
+    ip_address: 192.168.100.21
+    subnet_mask: 255.255.255.0
+
+loopbacks:
+  - description: Loopback for Route injection
+    interface_id: Loopback10
+    ip_address: 172.16.50.1
+    subnet_mask: 255.255.255.0
+
+  - description: Loopback for Route injection
+    interface_id: Loopback20
+    ip_address: 172.16.60.1
+    subnet_mask: 255.255.255.0
+
+  - description: Loopback for Route injection
+    interface_id: Loopback30
+    ip_address: 172.16.70.1
+    subnet_mask: 255.255.255.0
+
+networks:
+  - description: Advertise in BGP
+    network: 172.16.50.0
+
+  - description: Advertise in BGP
+    network: 172.16.60.0
+
+  - description: Advertise in BGP
+    network: 172.16.70.0
+snmp:
+  chassis_id: Vagrant CSR
+  contact: Mr. RunSi
+  location: On my laptop

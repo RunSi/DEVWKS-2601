@@ -1,0 +1,6 @@
+pyats
+genie
+tabulate
+ansible==2.4.3.0
+ncclient
+ipython
