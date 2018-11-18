@@ -6,11 +6,16 @@
 * [Introduction](/README.md)
 * [Step 1 - Getting Started](/guide/step1.md)
 * [Step 2 - Topology](/guide/step2.md)
+* [Step 3 - Genie Ops](/guide/step3.md)
+* [Step 4 - Tabular parsing with Parsergen](/guide/step4.md)
+* [Step 5 - Non Tabular parsing with Parsergen](/guide/step5.md)
 ---
 
 pyATS - Python Automated Test Systems is a Python3 based test automation infrastructure.  
 It is developed as the next-generation Cisco mainstream automation infrastructure, is compatible to existing tooling & 
-infrastructure, and is officially endorsed by Cisco executive team.
+infrastructure, and is officially endorsed by Cisco executive team.  
+
+Further information on pyATS can be found on [DevNet](https://developer.cisco.com/site/pyats/)
 
 ## The Lab
 
