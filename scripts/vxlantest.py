@@ -65,7 +65,7 @@ class Vxlan_Peers_established(aetest.Testcase):
 
         self.all_vxlan_info = {}
         for dev in self.parent.parameters['dev']:
-            log.info(banner("Gathering BGP Information from {}".format(
+            log.info(banner("Gathering VXLAN Information from {}".format(
                 dev.name)))
             #abstract = Lookup.from_device(dev)
             vxlan = Vxlan(dev)
