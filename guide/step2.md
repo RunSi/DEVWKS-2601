@@ -1,8 +1,83 @@
 ### The Topology
 
-Prior to initiating any tests then the network needs to be described in a Topology File.  
+Prior to initiating any tests then the network needs to be described in a Topology File. 
 
-The Topology file, written in YAML, describes the environment that will be tested. 
+The GENIE topology is based on the pyats topology.
+
+A pyats topology file which describes the network is described within a YAML file
+
+The GENIE Topology object is created by issuing the following commands:-
+
+```python
+from genie.conf import Genie
+
+testbed = Genie.init('path_to_name_of_yaml_file')
+
+```
+This is the topology file for this lab.  The topology file describes two devices _iosxe1_ and _iosxe2_
+
+```yaml
+
+testbed:
+    name: IOS_Testbed
+    tacacs:
+        username: vagrant
+    passwords:
+        tacacs: vagrant
+        enable: vagrant
+
+devices:
+    iosxe1:
+      alias: iosxe1
+      type: CSR1000v    
+      os: iosxe
+      connections:
+        ssh:
+          protocol: ssh
+          ip: 127.0.0.1
+          port: 3122
+      custom:
+        abstraction:
+          order: [os, type]
+
+    iosxe2:
+      alias: iosxe2
+      type: CSR1000v    
+      os: iosxe
+      connections:
+        ssh:
+          protocol: ssh
+          ip: 127.0.0.1
+          port: 3222
+      custom:
+        abstraction:
+          order: [os, type]
+
+
+topology:
+  iosxe1:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 10.0.2.15/24
+        link: management_link
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.100.20/24
+        link: iosxe1_to_iosxe2
+        type: ethernet
+
+  iosxe2:
+    interfaces:
+      GigabitEthernet1:
+        ipv4: 10.0.2.15/24
+        link: management_link
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 192.168.100.21/24
+        link: iosxe1_to_iosxe2
+        type: ethernet
+```
+
 
 The topology file for this lab can be found at:- [Topology](../scripts/vagrant_multi_ios.yaml)
 
