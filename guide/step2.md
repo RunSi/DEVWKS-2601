@@ -92,4 +92,4 @@ Once the topology file has been initiated with ```Genie.init('path_to_yaml_file'
 ![topology](../images/topologyobject.png)
 
 
-[Beginning](../README.md)   [Back](./step1.md)  [Next](./step3.md)
+[Beginning](../README.md)   [Back](./step1.md)  [Next](step3a.md)
