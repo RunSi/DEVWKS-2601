@@ -4,7 +4,7 @@ Prior to initiating any tests then the network needs to be described in a Topolo
 
 The GENIE topology is based on the pyats topology.
 
-A pyats topology file which describes the network is described within a YAML file
+The topology file is written in yaml and will describe attributes of your test network, such as device type login details, login method, links between devices.
 
 The GENIE Topology object is created by issuing the following commands:-
 
@@ -14,7 +14,12 @@ from genie.conf import Genie
 testbed = Genie.init('path_to_name_of_yaml_file')
 
 ```
-This is the topology file for this lab.  The topology file describes two devices _iosxe1_ and _iosxe2_
+This is the topology file for this lab.  The topology file describes two devices _iosxe1_ and _iosxe2_ and be found at:- [Topology](../scripts/vagrant_multi_ios.yaml)
+
+Some important points to note with the topology file.
+
+* The testbed must have a name - in this case IOS_NXOS_Testbed
+* The devices described - their name must correspond exactly with the hostname of the device in the testbed. e.g. iosxe1 is the hostname of the first device
 
 ```yaml
 
@@ -81,6 +86,8 @@ topology:
 
 The topology file for this lab can be found at:- [Topology](../scripts/vagrant_multi_ios.yaml)
 
+
+Once the topology file has been initiated with ```Genie.init('path_to_yaml_file')``` a testbed object will be created.  The testbed object will have a number of attributes and methods, a set of these are described in the diagram below
 ![topology](../images/topologyobject.png)
 
 
