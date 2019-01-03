@@ -4,7 +4,7 @@ import re
 # Metaparser
 from genie.metaparser import MetaParser
 from genie import parsergen
-from genie.metaparser.util.schemaengine import Schema, Any, Optional
+from genie.metaparser.util.schemaengine import Any, Optional
 
 
 
