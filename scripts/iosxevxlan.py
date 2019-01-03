@@ -16,31 +16,31 @@ from genie.libs.parser.utils.common import Common
 # Parser for 'show nve peers'
 # =============================================
 
-# class ShowNvePeersSchema(MetaParser):
-#     """Schema for show nve peers
-#     """
-#
-#     schema = {
-#         Any():{
-#         #    Any(): {
-#                 'Interface': str,
-#                 'Peer-IP': str,
-#
-#                 'Router-RMAC': str,
-#                 'Type': str,
-#                 Optional('Crap'): str,
-#                 'UP time': str,
-#                 'VNI': str,
-#                 'eVNI': str,
-#                'flags': str,
-#                'state': str,
-#            },
-#         }
-#    #}
+class ShowNvePeersSchema(MetaParser):
+    """Schema for show nve peers
+    """
+
+    schema = {
+        Any():{
+        #    Any(): {
+                'Interface': str,
+                'Peer-IP': str,
+
+                'Router-RMAC': str,
+                'Type': str,
+                Optional('Crap'): str,
+                'UP time': str,
+                'VNI': str,
+                'eVNI': str,
+               'flags': str,
+               'state': str,
+           },
+        }
+   #}
 
 
-# class ShowNvePeers(ShowNvePeersSchema):
-class ShowNvePeers():
+class ShowNvePeers(ShowNvePeersSchema):
+# class ShowNvePeers():
     """ Parser for nve peers """
 
     def cli(self):
@@ -58,29 +58,29 @@ class ShowNvePeers():
 # Parser for 'show nve vni'
 # =============================================
 
-# class ShowNveVniSchema(MetaParser):
-#     """Schema for show vni peers
-#     """
-#
-#     schema = {
-#         Any():{
-#         #    Any(): {
-#                 'BD': str,
-#                 'Interface': str,
-#
-#                 Optional('Mode'): str,
-#                 'Multicast-group': str,
-#                 Optional('Crap'): str,
-#                 'VNI': str,
-#                 'VNIstate': str,
-#                 'cfg': str,
-#                'vrf': str
-#            },
-#         }
-#    #}
+class ShowNveVniSchema(MetaParser):
+    """Schema for show vni peers
+    """
 
-# class ShowNveVni(ShowNveVniSchema):
-class ShowNveVni():
+    schema = {
+        Any():{
+        #    Any(): {
+                'BD': str,
+                'Interface': str,
+
+                Optional('Mode'): str,
+                'Multicast-group': str,
+                Optional('Crap'): str,
+                'VNI': str,
+                'VNIstate': str,
+                'cfg': str,
+               'vrf': str
+           },
+        }
+   #}
+
+class ShowNveVni(ShowNveVniSchema):
+# class ShowNveVni():
     """ Parser for nve vni """
 
     def cli(self):
