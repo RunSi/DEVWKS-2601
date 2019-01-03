@@ -4,6 +4,8 @@
 The GENIE OPS Library is used to represent a devices/feature's operational state/data through a Python Object. 
 Each feature on each device is represented via a single Ops object instance, where state/status 
 information is stored as an object attribute.
+
+Ops objects are snapshots of a particular feature on a particular device at a specific time.
  
 To demonstrate the power of the GENIE OPS library then please follow the sections below.
 
