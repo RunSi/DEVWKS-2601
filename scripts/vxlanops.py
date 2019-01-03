@@ -23,7 +23,7 @@ class Vxlan(Base):
                           dest=dest + '[{}]'.format(key))
 
 
-        # Capture ouptut frmo ShowNveVni parser
+        # Capture ouptut from ShowNveVni parser
         src = '[(?P<nvename>.*)]'
         dest = 'info[(?P<nvename>.*)]'
         req_keys = ['[Peer-IP]','[Router-RMAC]','[Type]','[state]']

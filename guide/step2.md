@@ -124,7 +124,8 @@ testbed.interfaces
 ```
 
 The topology object also has a number of methods associated with it.  We shall be leveraging the connect 
-method - _testbed.connect()_ in order to initiate connections to each of the devices.  
+method - _testbed.connect()_ in order to initiate connections to each of the devices.  We shall use the 'connect()' method
+in forthcoming exercises.
 
 
 [Beginning](../README.md)   [Back](./step1.md)  [Next](step3a.md)
