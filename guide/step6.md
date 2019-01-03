@@ -8,7 +8,13 @@ We will then combine the output of both show commands into one structured data o
 Ops package works.
 
 In production you would most likely leverage the Metaparser package in order to cater for different device 
-communication methods as well as qualifying returned data with the Metaparser schema engine.  For the purposes of
+communication methods as well as qualifying returned data with the Metaparser schema engine.  
+
+
+The Base Ops class requires that a Metaparser object is used, therefore we shall 
+For the purposes of
+
+
 this exercise will not be using the Metaparser package.  Details on Metaparser can be found at - 
 [Metaparser Package](https://pubhub.devnetcloud.com/media/pyats-packages/docs/metaparser/index.html)
 
