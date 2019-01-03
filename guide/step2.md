@@ -4,7 +4,8 @@ Prior to initiating any tests then the network needs to be described in a Topolo
 
 The GENIE topology is based on the pyats topology.
 
-The topology file is written in yaml and will describe attributes of your test network, such as device type login details, login method, links between devices.
+The topology file is written in yaml and will describe attributes of your test network, 
+such as device type login details, login method, links between devices.  
 
 The GENIE Topology object is created by issuing the following commands:-
 
@@ -88,8 +89,42 @@ topology:
 The topology file for this lab can be found at:- [Topology](../scripts/vagrant_multi_ios.yaml)
 
 
-Once the topology file has been initiated with ```Genie.init('path_to_yaml_file')``` a testbed object will be created.  The testbed object will have a number of attributes and methods, a set of these are described in the diagram below
+Once the topology file has been initiated with ```Genie.init('path_to_yaml_file')``` a testbed object will be created.  
+The testbed object will have a number of attributes and methods, a set of these are described in the diagram below
 ![topology](../images/topologyobject.png)
+
+
+### Load the Genie Library and instantiate the testbed file
+
+```bash
+$cd scripts
+
+$iPython
+```
+Change directory and run an iPython interactive shell:-
+
+```python
+from genie.conf import Genie
+
+testbed = Genie.init('vagrant_multi_ios.yaml')
+
+```
+
+The topology object that has been created is called testbed.  Now look at some of the attributes
+of the topology object by issuing the following commands
+
+```python
+
+testbed.devices 
+
+testbed.name 
+
+testbed.interfaces
+
+```
+
+The topology object also has a number of methods associated with it.  We shall be leveraging the connect 
+method - _testbed.connect()_ in order to initiate connections to each of the devices.  
 
 
 [Beginning](../README.md)   [Back](./step1.md)  [Next](step3a.md)

@@ -7,19 +7,19 @@ information is stored as an object attribute.
  
 To demonstrate the power of the GENIE OPS library then please follow the sections below.
 
-To start make sure that your Python Virtual Environment has been instantiated and start a Python Session
+To start make sure that your Python Virtual Environment is still running from step 2 and that you are in 
+the scripts directory.
+Initiate an iPython interactive session
 
 ```bash
 
-$ cd ~/DEVWKS-2601/
-$ source venv/bin/activate 
-$ cd scripts/
-$ python
+$ ipython
 
 Python 3.6.5 (default, Jun 17 2018, 12:13:06) 
-[GCC 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.2)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>> 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]:        
 
 ```
 
@@ -35,6 +35,14 @@ testbed = Genie.init('vagrant_multi_ios.yaml')
 
 ```
 
+The commands above will:-
+
+* Import the pprint library so as to 'pretty print' structured data to make it human readable
+* Import the Genie.conf library
+* Import the Operational data library for IOSXE Interfaces
+* Initiate the testbed file in order to interact with the testbed devices
+
+
 Access to the devices needs to be established prior to sending any additional GENIE API calls to the device, leveraging
 the topology _connect_ method. 
 
@@ -45,7 +53,8 @@ uut = testbed.devices.iosxe1
 ```
 
 The device object has a method called connect.  Using the connect method will establish a connection to the device
-using the connection method described in the topology yaml file.  Once connection is made the device will be prepared 
+using the connection method described in the topology yaml file.  You will know that a connection is successful with the 
+output from the device being displayed in the interactive session.Once connection is made the device will be prepared 
 for further calls on the device.
 
 ```python
@@ -61,7 +70,7 @@ being tested.
 interface = Interface(device=uut)
 ```
 
-The _interface_ object that has been instantiated has a **learn** method.  The learn method will send several show commands
+The _interface_ object that has been instantiated has a **learn** method.  The learn method will send several 
 relevant show commands to an IOSXE device.  The output of the show commands will be stored as structured data as an
 attribute (info) of the interface object.
 
