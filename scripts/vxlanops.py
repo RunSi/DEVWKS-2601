@@ -5,7 +5,7 @@ from genie.ops.base import Base
 
 #
 # Import Show nve neighbor and Show nve peers parsers
-from iosxevxlan import ShowNveVni,ShowNvePeers
+from testvxlanclass import ShowNveVni,ShowNvePeers
 
 #Create the Vxlan Ops Class
 class Vxlan(Base):

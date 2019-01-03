@@ -1,11 +1,30 @@
-### GENIE Creating a MetaParser and an OPS object
+### GENIE Creating an OPS object
 
 
 For the next step in the exercise we are going to create a parser for 'show nve peers' as an additional parser
 to 'show nve vni'.
 
-We shall also leverage the MetaParser package in order verify that the output is in accordance with the schema
-we define.
+We will then combine the output of both show commands into one structured data object.  This is in essence how the 
+Ops package works.
+
+In production you would most likely leverage the Metaparser package in order to cater for different device 
+communication methods as well as qualifying returned data with the Metaparser schema engine.  For the purposes of
+this exercise will not be using the Metaparser package.  Details on Metaparser can be found at - 
+[Metaparser Package](https://pubhub.devnetcloud.com/media/pyats-packages/docs/metaparser/index.html)
+
+
+To begin with create two classes that will define the parsers we shall use
+
+ShowNvePeers
+
+and 
+
+ShowNveVni
+
+The classes have already been created and should be viewed prior to continuing -
+
+
+
 
 ### Metaparser Package
 
