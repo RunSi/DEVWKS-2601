@@ -13,7 +13,7 @@ class Vxlan(Base):
     def learn(self, custom=None):
 
 
-        # Capture ouptut frmo ShowNveVni parser
+        # Capture ouptut from ShowNveVni parser
         src = '[(?P<interface>.*)]'
         dest = 'info[(?P<interface>.*)]'
         req_keys = ['[VNI]','[Multicast-group]','[VNIstate]','[Mode]']
