@@ -55,30 +55,75 @@ show_cmds = {
 }
 ```
 
-Create a dictionary of regular expressions to capture the elements required in the output
+Create a dictionary of regular expressions to capture the elements required in the output. The 
+example has regular expressions that will capture the encapsulation type and the source interface
 
 ```python
 regex = {
 
     'iosxe': {
-        'show.intf.if_name'  : r'([-A-Za-z0-9\._/:]+)',
-        'show.intf.encap': r'\s+Encapsulation\s+(\w+),',
+        'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
+        'nve.intf.source_intf': r'^source-interface:\s+(\w+)'
      }
 }
+
+regex_tags = {
+    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf']
+    }
+
 ```
+
+
 
 'Extend' the parsergen library to include the show commands and the regular expressions
 
 ```python
-parsergen.extend(show_cmds=show_cmds, regex_ext=regex)
+parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
 ```
 
 Now determine the parameters you wish to start the regex search on. The first item in the 
-tuple is the key name of the regex value, the second item is the value being searched 
+tuple is the key name of the regex value, the second item is the value being searched in this
+case all interfaces with Vxlan encapsulation
 
 ```python
-attrValPairsToParse = [('show.intf.if_name', 'GigabitEthernet1')]
+attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')
 ```
+
+Finally the _parsergen.oper\_fill_ method is called.  The arguments in this method will
+* determine the device to be called (uut)
+* determine which show command to call from the key show_int and use nve1 as the interface name for the show command
+* Provide the attribute value pairs to search on
+* And use the defined regular expressions that begin with _nve.intf_
+
+```python
+pgfill = parsergen.oper_fill (
+    uut,
+    #args,
+    ('show_int', ['nve1']),
+    attrValPairsToParse,
+    refresh_cache=True,
+    regex_tag_fill_pattern='nve\.intf')
+```
+
+
+Now enter the parse method for pgfill to populate parsergen ext_dictio attribute with the parsed items
+```python
+pgfill.parse()
+```
+
+Display the completed parse with
+
+```python
+pprint(parsergen.ext_dictio)
+```
+
+---
+
+**Full Script**
+
+
+
+
 
 
 

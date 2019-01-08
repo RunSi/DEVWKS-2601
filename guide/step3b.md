@@ -12,7 +12,7 @@ interface = Interface(device=uut, attributes=['info[(.*)][mac_address]'])
 Now 'relearn' the interface object and display the output
 
 ```python
-interface.learn
+interface.learn()
 
 pprint.pprint(interface.info)
 
@@ -21,7 +21,7 @@ pprint.pprint(interface.info)
 Now try and find other parameters from the interface object to learn and display (for example, 'mtu', 'bandwidth')
 
 
-MORE TO ADD
+MORE TO ADD  - Do Diff here
 
 
 ---
