@@ -27,12 +27,9 @@ Initiate an iPython interactive session and intialise the testbed
 ```bash
 
 $ ipython
+```
 
-Python 3.6.5 (default, Jun 17 2018, 12:13:06) 
-Type 'copyright', 'credits' or 'license' for more information
-IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
-
-
+```python
 import pprint
 from genie.conf import Genie
 from genie import parsergen
@@ -50,7 +47,7 @@ Create a dictionary of show commands. Only one show command for IOSXE in this in
 ```python
 show_cmds = {
      'iosxe': {
-        'show_intf' : "show interface {}",
+        'show_int' : "show nve interface {}",
      }
 }
 ```
