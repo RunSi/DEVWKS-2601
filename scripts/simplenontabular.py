@@ -1,7 +1,5 @@
 from genie.conf import Genie
 from genie import parsergen
-
-
 from pprint import pprint
 
 #open marked up text file and read into variable

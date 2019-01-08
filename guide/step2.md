@@ -2,7 +2,6 @@
 
 Prior to initiating any tests then the network needs to be described in a Topology File. 
 
-The GENIE topology is based on the pyats topology.
 
 The topology file is written in yaml and will describe attributes of your test network, 
 such as device type login details, login method, links between devices.  

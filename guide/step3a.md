@@ -82,7 +82,7 @@ interface.learn()
 
 The data returned and stored within the info attribute (interface.info), is a dictionary derived from the genie ops
 class.  
-To view the returned data:-
+To view all the returned data:-
 
 ```python
 pprint.pprint(interface.info)
