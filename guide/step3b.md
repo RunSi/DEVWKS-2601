@@ -23,4 +23,38 @@ Now try and find other parameters from the interface object to learn and display
 
 MORE TO ADD
 
+
+---
+
+**Full Script**
+
+```python
+
+import pprint
+from genie.conf import Genie
+
+from genie.libs.ops.interface.iosxe.interface import Interface
+
+testbed = Genie.init('vagrant_multi_ios.yaml')
+
+uut = testbed.devices.iosxe1
+
+uut.connect()
+
+interface = Interface(device=uut)
+
+interface.learn()
+
+pprint.pprint(interface.info)
+pprint.pprint(interface.info['nve1'])
+
+
+interface = Interface(device=uut, attributes=['info[(.*)][mac_address]'])
+
+interface.learn
+
+pprint.pprint(interface.info)
+
+```
+
 [Beginning](../README.md)   [Back](./step3a.md)  [Next](./step4.md)
