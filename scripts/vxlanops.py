@@ -14,8 +14,8 @@ class Vxlan(Base):
 
 
         # Capture ouptut from ShowNveVni parser
-        src = '[(?P<interface>.*)]'
-        dest = 'info[(?P<interface>.*)]'
+        src = '[(?P<interf>.*)]'
+        dest = 'info[(?P<interf>.*)]'
         req_keys = ['[VNI]','[Multicast-group]','[VNIstate]','[Mode]']
         for key in req_keys:
             self.add_leaf(cmd=ShowNveVni,
