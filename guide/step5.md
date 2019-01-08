@@ -30,7 +30,7 @@ $ ipython
 ```
 
 ```python
-import pprint
+from pprint import pprint
 from genie.conf import Genie
 from genie import parsergen
 
@@ -83,7 +83,7 @@ tuple is the key name of the regex value, the second item is the value being sea
 case all interfaces with Vxlan encapsulation
 
 ```python
-attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')
+attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
 ```
 
 Finally the _parsergen.oper\_fill_ method is called.  The arguments in this method will
@@ -118,7 +118,47 @@ pprint(parsergen.ext_dictio)
 
 **Full Script**
 
+```python
+from genie.conf import Genie
+from genie import parsergen
 
+from pprint import pprint
+
+
+testbed = Genie.init('vagrant_multi_ios.yaml')
+uut = testbed.devices.iosxe1
+uut.connect()
+
+
+show_cmds = {
+     'iosxe': {
+        'show_int' : "show nve interface {}",
+     }
+}
+
+regex = {
+
+    'iosxe': {
+        'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
+        'nve.intf.source_intf': r'^source-interface:\s+(\w+)'
+     }
+}
+
+regex_tags = {
+    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf']}
+
+parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
+
+attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
+pgfill = parsergen.oper_fill (
+    uut,
+    ('show_int', ['nve1']),
+    attrValPairsToParse,
+    refresh_cache=True,
+    regex_tag_fill_pattern='nve\.intf')
+pgfill.parse()
+pprint(parsergen.ext_dictio)
+```
 
 
 
