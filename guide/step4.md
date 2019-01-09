@@ -1,15 +1,17 @@
 ### GENIE Parsergen
 
 
-In addition to using the Ops package to retrieve and parse operational state of a device, the Genie Parsergen Packageprovides 
+In addition to using the Ops package to retrieve and parse operational state of a device, the Genie Parsergen Package provides 
 a one-step parsing mechanism that is capable of parsing dynamic tabular and non-tabular device outputs in a “noticeably” 
-less lines of code compared to the standard parsing mechanisms.
+less lines of code compared to standard parsing mechanisms.  
 The Genie Parsergen package is an extention of the top-level Cisco Genie automation package, based on Cisco pyATS framework.
 
 
-This is useful where Genie does not have the library for the particular state you are looking to parse.
- As an example there is currently no Genie Ops library for NVE/VXLAN.  This gap can be overcome by creating the parser that can 
+The Parsergen package is particularly useful where Genie Ops does not have a model does for the particular state you are 
+looking to parse.  
+As an example there is currently no Genie Ops Model for NVE/VXLAN.  This gap can be overcome by creating the parser that can 
  then be leveraged by pyATS/GENIE.  
+ 
 The object of the remaining exercises is to 
 * Parse VXLAN relevant state
 * Create an Ops library
@@ -29,7 +31,7 @@ nve1       6001       N/A             Up         L2DP  1     CLI N/A
 ```
 
 As can been seen above this is a column based/tabular output.  In order to parse this output we need to instruct
-parsergen as to the titles of the columns.  Follow the commands below to parse for the command 'show nve vni'
+parsergen as to the titles of the columns.  Follow the commands below to parse the command 'show nve vni'
 
 To start make sure that your Python Virtual Environment is still running from step 3 and that you are in 
 the scripts directory.
@@ -38,12 +40,6 @@ Initiate an iPython interactive session
 ```bash
 
 $ ipython
-
-Python 3.6.5 (default, Jun 17 2018, 12:13:06) 
-Type 'copyright', 'credits' or 'license' for more information
-IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
-
-In [1]:        
 
 ```
 
