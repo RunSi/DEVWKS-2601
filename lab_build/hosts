@@ -2,7 +2,7 @@
 ansible_python_interpreter="/usr/bin/env python"
 
 [vagrant]
-iosxe1
+iosxe1  ansible_host=127.0.0.1
 
 
 [sandbox]
