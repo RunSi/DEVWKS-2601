@@ -3,7 +3,7 @@ ansible_python_interpreter="/usr/bin/env python"
 
 [vagrant]
 iosxe1
-iosxe2
+
 
 [sandbox]
 10.10.20.48
