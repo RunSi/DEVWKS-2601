@@ -46,9 +46,8 @@ def verify_interface_status(obj):
 interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
 
 ````
-If you wish from another terminal session ssh to the device and shutdown Gig3. 
  
-If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!
+If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!  
 If the lab you are using is a local vagrant machine - ssh -p 3122 vagrant@127.0.0.1 vagrant
   
 
@@ -76,7 +75,7 @@ interface_before.learn()
 ```
 
 Now in a seperate terminal ssh into your device
-If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!
+If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!  
 If the lab you are using is a local vagrant machine - ssh -p 3122 vagrant@127.0.0.1 vagrant
 
 ```bash
@@ -107,7 +106,7 @@ print(diff)
 **Conclusion**
 
 As demonstrated the Ops library is an extremely useful set of tools for retrieving state data from your devices.  The
-preceding exercise only explored the Ops _Model_ for IOSXE Interfaces.  There hundreds of further models at your disposal
+preceding exercise only explored the Ops _Model_ for IOSXE Interfaces.  There are hundreds of further models at your disposal
 that support a vast range of features across IOSXE, IOSXR and NXOS.  To view the available models please go to [Model Wiki](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/genie_libs/#/models)
 
 **Full Script**
