@@ -6,7 +6,7 @@ Parsergen tries to match a given set of data using regular expressions that desc
 in the show command output.
 
 Consider the following output from the _show nve interface nve 1_ .  
-We shall parse the data to retrieve the VxLAN dport and the Source-Interface
+We shall parse the data to retrieve Source_Interface and Primary address based upon an encapsulation of Vxlan
 
 ```python
 
@@ -100,7 +100,6 @@ Finally the _parsergen.oper\_fill_ method is called.  The arguments in this meth
 ```python
 pgfill = parsergen.oper_fill (
     uut,
-    #args,
     ('show_int', ['nve1']),
     attrValPairsToParse,
     refresh_cache=True,
