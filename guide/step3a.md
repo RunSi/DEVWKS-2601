@@ -1,7 +1,7 @@
 ### GENIE OPS Library
 
 
-The GENIE OPS Library is used to represent a devices/feature's operational state/data through a Python Object. 
+The GENIE OPS Library is used to represent a device/feature's operational state/data through a Python Object. 
 Each feature on each device is represented via a single Ops object instance, where state/status 
 information is stored as an object attribute.
 
@@ -35,7 +35,7 @@ The commands above will:-
 
 * Import the pprint library so as to 'pretty print' structured data to make it more easily readable
 * From genie.conf import the Genie library
-* Import the Operational data library for IOSXE Interfaces
+* Import the Operational Model for IOSXE Interfaces
 * Initiate the testbed file in order to interact with the testbed devices
 
 
