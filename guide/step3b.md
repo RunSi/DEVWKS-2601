@@ -25,10 +25,13 @@ Now try and find other parameters from the interface object to learn and display
 
 **Verify State**
 
-A very useful feature of the Ops object is to verify the condition of a particular state.  The code below creates a function
- that checks the current oper_status of GigabitEthernet3.  
+A very useful feature of the Ops object is to verify the condition of a particular state.  
+
+The code below creates a function that checks the current oper_status of GigabitEthernet3.  
+
 If the oper_status is up, then the verification is successful it will print that Gig3 is up and return to the main body of the
 code.  
+
 If the oper_status is down it will learn the interface state 3 more times with a sleep interval of 3 seconds, if after 3 attempts
 the interface is still down then an Exception will be raised.
 
@@ -48,6 +51,7 @@ interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
 ````
  
 If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!  
+
 If the lab you are using is a local vagrant machine - ssh -p 3122 vagrant@127.0.0.1 vagrant
   
 
@@ -64,9 +68,10 @@ Now rerun the above code and observe the results
 
 **Compare State**
 
-In order to determine what state has change over time we can compare 'snapshots'.  Consider that each time you 
-initiate the learn method, you are effectively taking a snapshot of current state.  The code below will demonstrate, please
-enter into iPython:-
+In order to determine what state has changed over time we can compare 'snapshots'.  Consider that each time you 
+initiate the learn method, you are effectively taking a snapshot of current state.  
+
+The code below will demonstrate, please enter into iPython:-
 
 ```python
 interface_before = Interface(device=uut)
@@ -75,7 +80,9 @@ interface_before.learn()
 ```
 
 Now in a seperate terminal ssh into your device
+
 If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!  
+
 If the lab you are using is a local vagrant machine - ssh -p 3122 vagrant@127.0.0.1 vagrant
 
 ```bash
