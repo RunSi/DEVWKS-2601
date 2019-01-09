@@ -1,7 +1,7 @@
-###Using Markup Text to parse Non Tabular Output
+### Using Markup Text to parse Non Tabular Output
 
 Rather than explicitly defining regular expressions for each item to retrieve an alternative
-is to use a special CLI command markup format that will automatically generate the regular
+we can use a special CLI command markup format that will automatically generate the regular
 expressions.
 
 If you have an iPython session running. Close and restart iPython
@@ -11,11 +11,6 @@ Initiate an iPython interactive session and intialise the testbed
 ```bash
 
 $ ipython
-
-Python 3.6.5 (default, Jun 17 2018, 12:13:06) 
-Type 'copyright', 'credits' or 'license' for more information
-IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
-
 
 import pprint
 from genie.conf import Genie
@@ -29,7 +24,7 @@ uut.connect()
 
 ```      
 
-Enter the following assign to assign the _marked up_ string to the variable markedupIOSX
+Enter the following to assign the _marked up_ string to the variable markedupIOSX
 
 ```python
 markedupIOSX = '''
@@ -53,14 +48,14 @@ source-interface: XW<source_interface>XLoopback0 (primary:XA<primary_address>X1.
 You will notice in the string that there are some key components
 
 **OS:** Define the operating system being used  
-**CMD:** Used by parsergen as the dict key for the _SHOWCMD_
-**SHOWCMD:** The actual show command to be issued
-**PREFIX** Will be used to prefix the keys for each item parsed
-**ACTUAL** Output expected from the device (optional)
+**CMD:** Used by parsergen as the dict key for the _SHOWCMD_  
+**SHOWCMD:** The actual show command to be issued  
+**PREFIX** Will be used to prefix the keys for each item parsed  
+**ACTUAL** Output expected from the device (optional)  
 **MARKUP** The Output with markup added. Will be used to identify items to parse
 
 The Markup itself begins and ends with **X** with the key name inbetween.  For example
-**XW\<ifname>X**  will assign the following word to the key nve.intf.**ifname**
+**XW\<ifname>X**  will assign a value to the key nve.intf.**ifname**
 
 Full list of Markup tags are included at the bottom of this file.
 
@@ -72,8 +67,8 @@ parsergen.extend_markup(markedupIOSX)
 ```
 
 Now determine the parameters you wish to start the regex search on. The first item in the 
-tuple is the key name of the regex value, the second item is the value being searched. In this instanc
-only nve interfaces that have a Vxlan encapsulation
+tuple is the key name of the regex value, the second item is the value being searched. In this instance
+only nve interfaces that have a Vxlan encapsulation are being considered
 
 ```python
 attrValPairsToCheck = [('nve.intf.encap', 'Vxlan'),]
@@ -83,9 +78,10 @@ Calls the parsergen.oper_fill method in order to create a dictionary of the pars
 
 ```python
 pgfill = parsergen.oper_fill(device=uut,
-    show_command=('show_nve_interface', [], {'ifname':'nve1'}),
-attrvalpairs=attrValPairsToCheck,
-refresh_cache=True, regex_tag_fill_pattern='nve\.intf')
+                             show_command=('show_nve_interface', [], {'ifname':'nve1'}),
+                             attrvalpairs=attrValPairsToCheck,
+                             refresh_cache=True, 
+                             regex_tag_fill_pattern='nve\.intf')
 ```
 Now call the parse method for the object pgfill
 
