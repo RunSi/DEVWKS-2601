@@ -88,7 +88,7 @@ The topology file for this lab can be found at:- [Topology](../scripts/vagrant_m
 
 
 Once the topology file has been initiated with ```Genie.init('path_to_yaml_file')``` a testbed object will be created.  
-The testbed object will have a number of attributes and methods, a set of these are described in the diagram below.
+The testbed object will have a number of attributes, objects and methods, a set of these are described in the diagram below.
 ![topology](../images/topologyobject.png)
 
 
@@ -124,8 +124,8 @@ testbed.interfaces
 
 ```
 
-The topology file has a numerous attributes and methods.  To view the available methods then in the iPython session type
-**testbed.** and press tab.  Alternatively you can issued the following command within iPython
+The topology file has numerous attributes, objects and methods, to view these then in the iPython session type
+**testbed.** and press tab.  Alternatively you can issue the following command within iPython
 
 ```python
 
@@ -142,7 +142,7 @@ You will see that from issuing this command that testbed.devices has number of a
 _iosxe1_ and _iosxe2_
 
 
-Once again type within iPython
+Once again type within iPython (or tab completion)
 
 ```python
 dir(testbed.devices.iosxe1)

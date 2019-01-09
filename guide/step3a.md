@@ -16,19 +16,13 @@ Initiate an iPython interactive session
 ```bash
 
 $ ipython
-
-Python 3.6.5 (default, Jun 17 2018, 12:13:06) 
-Type 'copyright', 'credits' or 'license' for more information
-IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
-
-In [1]:        
-
+     
 ```
 
 Import the Topology library and the Ops Interface Library and instantiate the topology object (referred to in this example as _testbed_)
 
 ```python
-import pprint
+from pprint import pprint
 from genie.conf import Genie
 
 from genie.libs.ops.interface.iosxe.interface import Interface
@@ -39,8 +33,8 @@ testbed = Genie.init('vagrant_multi_ios.yaml')
 
 The commands above will:-
 
-* Import the pprint library so as to 'pretty print' structured data to make it human readable
-* Import the Genie.conf library
+* Import the pprint library so as to 'pretty print' structured data to make it more easily readable
+* From genie.conf import the Genie library
 * Import the Operational data library for IOSXE Interfaces
 * Initiate the testbed file in order to interact with the testbed devices
 
@@ -54,44 +48,55 @@ First make a reference to the topology device object
 uut = testbed.devices.iosxe1
 ```
 
-The device object has a method called connect.  Using the connect method will establish a connection to the device
-using the connection method described in the topology yaml file.  You will know that a connection is successful with the 
-output from the device being displayed in the interactive session.Once connection is made the device will be prepared 
+As mentioned previously the device object has a method called connect.  Using the connect method will establish a connection to the device
+using the connection method described in the topology yaml file, in this case _ssh_.  You will know that a connection is successful with the 
+output from the device being displayed in the interactive session. Once connection is made the device will be prepared 
 for further calls on the device.
 
 ```python
 uut.connect()
 ```
 
+---
+
 ### Learn the state of the interfaces on the device under test (iosxe1)
 
 First an interface Ops object needs to instantiated.  The argument for instantiating the object is the device that is
-being tested.
+being tested, defined earlier as _uut_.
 
 ```python
 interface = Interface(device=uut)
 ```
 
 The _interface_ object that has been instantiated has a **learn** method.  The learn method will send several 
-relevant show commands to an IOSXE device.  The output of the show commands will be stored as structured data as an
-attribute (info) of the interface object.
+relevant show commands to an IOSXE device.  The output of the show commands will be parsed and collated and subsequently stored
+as a single structured data entity(dictionary).
 
 ```python
 interface.learn()
 ```
 
-The data returned and stored within the info attribute (interface.info), is a dictionary derived from the genie ops
-class.  
+The data that is parsed and collated is stored as a single entry under the _info_ attribute of the interface object.
+  
 To view all the returned data:-
 
 ```python
-pprint.pprint(interface.info)
+pprint(interface.info)
 ```
 
-View the data for just one interface
+From the above output you should recognise that the data is now stored as a dictionary and thus the values can be 
+retrieved by referencing the relevant key.
+
+For example:-
 
 ```python
-pprint.pprint(interface.info['nve1'])
+pprint(interface.info['nve1'])
+```
+
+And:-
+
+```python
+pprint(interface.info['nve1']['phys_address'])
 ```
 
 
