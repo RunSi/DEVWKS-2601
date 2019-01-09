@@ -15,9 +15,12 @@ BGP host reachability: Disable, VxLAN dport: 4789
 VNI number: L3CP 0 L2CP 0 L2DP 1
 source-interface: Loopback10 (primary:172.16.10.1 vrf:0)
 ```
+
+We shall parse the data to retrieve the VxLAN dport and the Source-Interface
+
 There are two methods by which we can retrieve this data
 
-**Using Regular Expressions**
+### Using Regular Expressions manually
 
 
 To start make sure that your Python Virtual Environment is still running from step 4 and that you are in 
@@ -53,19 +56,21 @@ show_cmds = {
 ```
 
 Create a dictionary of regular expressions to capture the elements required in the output. The 
-example has regular expressions that will capture the encapsulation type and the source interface
+example has regular expressions that will capture the encapsulation type and the source interface.  
+As useful tool for creating and validing python _re_ based regular expressions can be found here: [Pythex](https://pythex.org/)
 
 ```python
 regex = {
 
     'iosxe': {
         'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
-        'nve.intf.source_intf': r'^source-interface:\s+(\w+)'
+        'nve.intf.source_intf': r'^source-interface:\s+(\w+)',
+        'nve.intf.primary': r'[a-zA-Z0-9\:\,a-zA-Z0-9\s]+\(primary:([A-Fa-f0-9:\.]+)'
      }
 }
 
 regex_tags = {
-    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf']
+    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf', 'nve.intf.primary']
     }
 
 ```

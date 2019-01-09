@@ -9,6 +9,7 @@ router_id: 172.16.10.1
 as_number: 100
 remote_as: 200
 neighbor: 192.168.100.21
+ingress_rep: 172.16.50.1
 interfaces:
   - interface_type: GigabitEthernet
     interface_id: 2
@@ -33,6 +34,16 @@ loopbacks:
     interface_id: Loopback30
     ip_address: 172.16.30.1
     subnet_mask: 255.255.255.0
+
+networks:
+  - description: Advertise in BGP
+    network: 172.16.10.0
+
+  - description: Advertise in BGP
+    network: 172.16.20.0
+
+  - description: Advertise in BGP
+    network: 172.16.30.0
 
 snmp:
   chassis_id: Vagrant CSR
