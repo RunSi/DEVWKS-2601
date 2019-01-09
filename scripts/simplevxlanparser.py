@@ -2,6 +2,7 @@
 #Import Genie libraries
 from genie.conf import Genie
 from genie import parsergen
+import re
 
 from pprint import pprint
 

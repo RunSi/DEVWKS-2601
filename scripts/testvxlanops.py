@@ -13,9 +13,9 @@ class Vxlan(Base):
     def learn(self, custom=None):
 
 
-        # Capture output from ShowNveVni parser
-        src = '[(?P<interf>.*)]'
-        dest = 'info[(?P<interf>.*)]'
+        # Capture ouptut frmo ShowNveVni parser
+        src = '[(?P<interface>.*)]'
+        dest = 'info[(?P<interface>.*)]'
         req_keys = ['[VNI]','[Multicast-group]','[VNIstate]','[Mode]']
         for key in req_keys:
             self.add_leaf(cmd=ShowNveVni,
@@ -34,4 +34,3 @@ class Vxlan(Base):
 
         #Add ops data to the Vxlan ojbect
         self.make()
-

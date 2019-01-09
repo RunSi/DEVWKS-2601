@@ -1,32 +1,28 @@
 ### GENIE OPS Library
 
 
-The GENIE OPS Library is used to represent a devices/feature's operational state/data through a Python Object. 
+The GENIE OPS Library is used to represent a device/feature's operational state/data through a Python Object. 
 Each feature on each device is represented via a single Ops object instance, where state/status 
 information is stored as an object attribute.
+
+Ops objects are snapshots of a particular feature on a particular device at a specific time.
  
 To demonstrate the power of the GENIE OPS library then please follow the sections below.
 
-To start make sure that your Python Virtual Environment has been instantiated and start a Python Session
+To start make sure that your Python Virtual Environment is still running from step 2 and that you are in 
+the scripts directory.
+Initiate an iPython interactive session
 
 ```bash
 
-$ cd ~/DEVWKS-2601/
-$ source venv/bin/activate 
-$ cd scripts/
-$ python
-
-Python 3.6.5 (default, Jun 17 2018, 12:13:06) 
-[GCC 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.2)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>> 
-
+$ ipython
+     
 ```
 
 Import the Topology library and the Ops Interface Library and instantiate the topology object (referred to in this example as _testbed_)
 
 ```python
-import pprint
+from pprint import pprint
 from genie.conf import Genie
 
 from genie.libs.ops.interface.iosxe.interface import Interface
@@ -34,6 +30,14 @@ from genie.libs.ops.interface.iosxe.interface import Interface
 testbed = Genie.init('vagrant_multi_ios.yaml')
 
 ```
+
+The commands above will:-
+
+* Import the pprint library so as to 'pretty print' structured data to make it more easily readable
+* From genie.conf import the Genie library
+* Import the Operational Model for IOSXE Interfaces
+* Initiate the testbed file in order to interact with the testbed devices
+
 
 Access to the devices needs to be established prior to sending any additional GENIE API calls to the device, leveraging
 the topology _connect_ method. 
@@ -44,43 +48,55 @@ First make a reference to the topology device object
 uut = testbed.devices.iosxe1
 ```
 
-The device object has a method called connect.  Using the connect method will establish a connection to the device
-using the connection method described in the topology yaml file.  Once connection is made the device will be prepared 
+As mentioned previously the device object has a method called connect.  Using the connect method will establish a connection to the device
+using the connection method described in the topology yaml file, in this case _ssh_.  You will know that a connection is successful with the 
+output from the device being displayed in the interactive session. Once connection is made the device will be prepared 
 for further calls on the device.
 
 ```python
 uut.connect()
 ```
 
+---
+
 ### Learn the state of the interfaces on the device under test (iosxe1)
 
 First an interface Ops object needs to instantiated.  The argument for instantiating the object is the device that is
-being tested.
+being tested, defined earlier as _uut_.
 
 ```python
 interface = Interface(device=uut)
 ```
 
-The _interface_ object that has been instantiated has a **learn** method.  The learn method will send several show commands
-relevant show commands to an IOSXE device.  The output of the show commands will be stored as structured data as an
-attribute (info) of the interface object.
+The _interface_ object that has been instantiated has a **learn** method.  The learn method will send several 
+relevant show commands to an IOSXE device.  The output of the show commands will be parsed and collated and subsequently stored
+as a single structured data entity(dictionary).
 
 ```python
 interface.learn()
 ```
 
-The data returned and stored within the info attribute (interface.info), is a dictionary derived from the genie ops
-class.  
-To view the returned data:-
+The data that is parsed and collated is stored as a single entry under the _info_ attribute of the interface object.
+  
+To view all the returned data:-
 
 ```python
-pprint.pprint(interface.info)
+pprint(interface.info)
 ```
 
-View the data for just one interface
+From the above output you should recognise that the data is now stored as a dictionary and thus the values can be 
+retrieved by referencing the relevant key.
+
+For example:-
 
 ```python
-pprint.pprint(interface.info['nve1'])
+pprint(interface.info['nve1'])
+```
+
+And:-
+
+```python
+pprint(interface.info['nve1']['phys_address'])
 ```
 
 

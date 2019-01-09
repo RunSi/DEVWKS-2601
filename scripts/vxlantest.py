@@ -56,7 +56,7 @@ class common_setup(aetest.CommonSetup):
 #                     TESTCASES SECTION                           #
 ###################################################################
 
-class Vxlan_Peers_established(aetest.Testcase):
+class Vxlan_Up_And_Working(aetest.Testcase):
     """ This is user Testcases section """
 
     @ aetest.test
@@ -106,7 +106,7 @@ class Vxlan_Peers_established(aetest.Testcase):
             self.failed("A device has VXLAN interface down")
 
         else:
-            self.passed("VXLAN peers are established")
+            self.passed("VXLAN is up")
 
 
 

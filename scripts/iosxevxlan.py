@@ -4,7 +4,7 @@ import re
 # Metaparser
 from genie.metaparser import MetaParser
 from genie import parsergen
-from genie.metaparser.util.schemaengine import Schema, Any, Optional
+from genie.metaparser.util.schemaengine import Any, Optional
 
 
 
@@ -40,6 +40,7 @@ class ShowNvePeersSchema(MetaParser):
 
 
 class ShowNvePeers(ShowNvePeersSchema):
+# class ShowNvePeers():
     """ Parser for nve peers """
 
     def cli(self):
@@ -79,6 +80,7 @@ class ShowNveVniSchema(MetaParser):
    #}
 
 class ShowNveVni(ShowNveVniSchema):
+# class ShowNveVni():
     """ Parser for nve vni """
 
     def cli(self):

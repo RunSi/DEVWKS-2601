@@ -1,0 +1,16 @@
+OS: iosxe
+CMD: show_nve_interface
+SHOWCMD: show nve interface {ifname}
+PREFIX: nve.intf
+ACTUAL:
+
+Interface: nve1, State: Admin Up, Oper Up, Encapsulation: Vxlan,
+BGP host reachability: Disable, VxLAN dport: 4789
+VNI number: L3CP 0 L2CP 0 L2DP 1
+source-interface: Loopback10 (primary:172.16.10.1 vrf:0)
+
+MARKUP:
+Interface: XW<ifname>Xnve1, State: Admin XW<state>XUp, Oper Up, Encapsulation: XW<encap>Xanything,
+BGP host reachability: Disable, VxLAN dport: XN<udp_port>X4789
+VNI number: L3CP 0 L2CP 0 L2DP 1
+source-interface: XW<source_interface>XLoopback0 (primary:XA<primary_address>X172.16.10.1 vrf:XN<VRF>X4)

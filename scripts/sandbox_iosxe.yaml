@@ -1,0 +1,25 @@
+testbed:
+    name: IOS_Testbed
+    tacacs:
+        username: cisco
+    passwords:
+        tacacs: cisco_1234!
+        enable: cisco_1234!
+
+devices:
+    iosxe1:
+      alias: iosxe1
+      type: CSR1000v
+      os: iosxe
+      connections:
+        ssh:
+          protocol: ssh
+          ip: 10.10.20.48
+          port: 22
+      custom:
+        abstraction:
+          order: [os, type]
+
+
+
+

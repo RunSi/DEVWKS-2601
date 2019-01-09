@@ -3,7 +3,7 @@
 In order to follow this lab please clone the DevNet2601 repository from github
 
 ```bash
-$ git clone https://github.com/RunSi/DevNet2601.git
+$ git clone https://github.com/RunSi/DevNet-2601.git
 
 $ cd DevNet2601
 
@@ -17,13 +17,13 @@ The script performs the following actions:-
 
 * Sets up a local python3 virtual environment and installs all necessary
  dependencies.  
-* Brings up two CSR1000vs using Vagrant  
-* Configures the CSR1000vs for:-  
+* Brings up a CSR1000v using Vagrant  
+* Configures the CSR1000v for:-  
     * Netconf
     * Interface configuration
     * Loopback configuration
-    * BGP Peering between the two routers
-    * VXLAN session between the two routers
+    * Creates BGP Configuration
+    * Creaets VxLAN configuration
     
 Please allow several minutes for the script to complete
 

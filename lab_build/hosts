@@ -2,8 +2,8 @@
 ansible_python_interpreter="/usr/bin/env python"
 
 [vagrant]
-iosxe1
-iosxe2
+iosxe1  ansible_host=127.0.0.1
+
 
 [sandbox]
 10.10.20.48
