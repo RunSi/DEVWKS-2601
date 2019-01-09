@@ -41,7 +41,7 @@ object oriented programming.
 
 The CSR1000v IOSXE Boxes must be available on your system.  
 Instructions for creating the CSR1000v Boxes can be found at:-  [Box Building](https://github.com/hpreston/vagrant_net_prog/tree/master/box_building)  
-Vagrant VM Boxes must be named - _iosxe/16.08.01a_ - Alternatively modify [Vagrantfile](/lab_build/Vagrantfile) to point to your local CSR1000v box
+Vagrant VM Boxes must be named - _iosxe/16.08.01_ - Alternatively modify [Vagrantfile](/lab_build/Vagrantfile) to point to your local CSR1000v box
 
 
 ### To start please proceed to [Step1](/guide/step1.md)
