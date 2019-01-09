@@ -6,9 +6,13 @@
 * [Introduction](/README.md)
 * [Step 1 - Getting Started](/guide/step1.md)
 * [Step 2 - Topology](/guide/step2.md)
-* [Step 3 - Genie Ops](/guide/step3a.md)
+* [Step 3a - Genie Ops](/guide/step3a.md)
+* [Step 3b - Genie Ops Continued](/guide/step3b.md)
 * [Step 4 - Tabular parsing with Parsergen](/guide/step4.md)
-* [Step 5 - Non Tabular parsing with Parsergen](/guide/step5.md)
+* [Step 5a - Non Tabular parsing with Parsergen - Regex](/guide/step5.md)
+* [Step 5b - Non Tabular parsing wtih Parsregen - Markup](/guide/step5b.md)
+* [Step 6 - Creating an Ops object](/guide/step6.md)
+* [Step 7 - Bringing it home with Easypy](/guide/step7.md)
 ---
 
 pyATS - Python Automated Test Systems is a Python3 based test automation infrastructure.  
