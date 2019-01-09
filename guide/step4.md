@@ -1,13 +1,12 @@
 ### GENIE Parsergen
 
 
-In addition to using the Ops package to retrieve and parse operational state of a device, the Genie Parsergen Package provides 
+In addition to using the Ops package to retrieve and parse operational state of a device, the Genie Parsergen Class provides 
 a one-step parsing mechanism that is capable of parsing dynamic tabular and non-tabular device outputs in a “noticeably” 
 less lines of code compared to standard parsing mechanisms.  
-The Genie Parsergen package is an extention of the top-level Cisco Genie automation package, based on Cisco pyATS framework.
 
 
-The Parsergen package is particularly useful where Genie Ops does not have a model does for the particular state you are 
+The Parsergen Class is particularly useful where Genie Ops does not have a model for the particular state you are 
 looking to parse.  
 As an example there is currently no Genie Ops Model for NVE/VXLAN.  This gap can be overcome by creating the parser that can 
  then be leveraged by pyATS/GENIE.  
@@ -20,7 +19,7 @@ The object of the remaining exercises is to
 
 ###Tabular Parsing
 
-The Genie Parsergen Package can deal with both Tabular and Non Tabular device output from a networking device. We 
+The Genie Parsergen Class can deal with both Tabular and Non Tabular device output from a networking device. We 
 shall initially explore Tabular parsing
 
 Consider the output from the show command 'show nve vni'

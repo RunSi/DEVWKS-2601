@@ -19,7 +19,7 @@ $ ipython
      
 ```
 
-Import the Topology library and the Ops Interface Library and instantiate the topology object (referred to in this example as _testbed_)
+Import the Topology library and the Ops Interface Model(Class) and instantiate the topology object (referred to in this example as _testbed_)
 
 ```python
 from pprint import pprint
@@ -34,7 +34,7 @@ testbed = Genie.init('vagrant_multi_ios.yaml')
 The commands above will:-
 
 * Import the pprint library so as to 'pretty print' structured data to make it more easily readable
-* From genie.conf import the Genie library
+* From genie.conf import the Genie Class
 * Import the Operational Model for IOSXE Interfaces
 * Initiate the testbed file in order to interact with the testbed devices
 

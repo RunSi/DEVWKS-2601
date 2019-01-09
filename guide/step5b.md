@@ -1,6 +1,6 @@
 ### Using Markup Text to parse Non Tabular Output
 
-Rather than explicitly defining regular expressions for each item to retrieve, an alternative
+Rather than explicitly defining regular expressions for each item to retrieve, as an alternative
 we can use a special CLI command markup format that will automatically generate the regular
 expressions.
 
@@ -61,7 +61,7 @@ Full list of Markup tags are included at the bottom of this file.
 
 The remaining commands are similar to those used for parsing with regular expressions
 
-'Extend' the parsergen library to include the show commands and the regular expressions
+'Extend' the Parsergen Class to include the show commands and the regular expressions
 ```python
 parsergen.extend_markup(markedupIOSX)
 ```
@@ -74,7 +74,7 @@ only nve interfaces that have a Vxlan encapsulation are being considered
 attrValPairsToCheck = [('nve.intf.encap', 'Vxlan'),]
 ```
 
-Calls the parsergen.oper_fill method in order to create a dictionary of the parsed output. 
+Create an object called pgfill from the parsergen.oper_fill method in order to create a dictionary of the parsed output. 
 
 ```python
 pgfill = parsergen.oper_fill(device=uut,

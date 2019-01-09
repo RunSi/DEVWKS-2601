@@ -16,9 +16,7 @@ VNI number: L3CP 0 L2CP 0 L2DP 1
 source-interface: Loopback10 (primary:172.16.10.1 vrf:0)
 ```
 
-We shall parse the data to retrieve the VxLAN dport and the Source-Interface
-
-There are two methods by which we can retrieve this data
+There are two methods by which we can retrieve this data - Manual regular expressions and Markup
 
 ### Using Regular Expressions manually
 
@@ -56,7 +54,7 @@ show_cmds = {
 ```
 
 Create a dictionary of regular expressions to capture the elements required in the output. The 
-example has regular expressions that will capture the encapsulation type and the source interface.  
+example has regular expressions that will capture the encapsulation type, the source interface and the primary address.  
 As useful tool for creating and validing python _re_ based regular expressions can be found here: [Pythex](https://pythex.org/)
 
 ```python
@@ -77,7 +75,7 @@ regex_tags = {
 
 
 
-'Extend' the parsergen library to include the show commands and the regular expressions
+'Extend' the Parsergen Class to include the show commands and the regular expressions
 
 ```python
 parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
@@ -91,7 +89,7 @@ case all interfaces with Vxlan encapsulation
 attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
 ```
 
-Finally the _parsergen.oper\_fill_ method is called.  The arguments in this method will
+Finally we create the object pgfill by calling the _parsergen.oper\_fill_ method is called.  The arguments in this method will
 * determine the device to be called (uut)
 * determine which show command to call from the key show_int and use nve1 as the interface name for the show command
 * Provide the attribute value pairs to search on

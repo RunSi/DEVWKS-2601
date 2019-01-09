@@ -92,7 +92,7 @@ The testbed object will have a number of attributes, objects and methods, a set 
 ![topology](../images/topologyobject.png)
 
 
-### Load the Genie Library and instantiate the testbed file
+### Load the Genie Class and instantiate the testbed file
 
 Change directory and run an iPython interactive shell:-
 
@@ -102,7 +102,7 @@ $cd scripts
 $iPython
 ```
 
-Import the Genie library from genie.conf and initiate the testbed file
+Import the Genie Class from genie.conf and initiate the testbed file
 
 ```python
 from genie.conf import Genie
