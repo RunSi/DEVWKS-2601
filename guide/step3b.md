@@ -23,7 +23,7 @@ Now try and find other parameters from the interface object to learn and display
 
 ---
 
-**Verify State of Object**
+**Verify State**
 
 A very useful feature of the Ops object is to verify the condition of a particular state.  The code below creates a function
  that checks the current oper_status of GigabitEthernet3.  
