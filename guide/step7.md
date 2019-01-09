@@ -1,4 +1,4 @@
-### GENIE Using EasyPy to run a Test with the new VxLAN Genie Ops model
+### Using EasyPy to run a Test with the new VxLAN Genie Ops model
 
 Now that we have a newly created VxLAN Genie Ops Model we can leverage it within the pyATS framework.  
 
