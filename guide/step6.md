@@ -1,51 +1,90 @@
 ### GENIE Creating an OPS object
 
+We are now going to create a VxLAN OPS object that will collate the output of the two parsers we created earlier.
 
-For the next step in the exercise we are going to create a parser for 'show nve peers' as an additional parser
-to 'show nve vni'.
+For the sake of brevity these two parsers have been defined within Classes in the file [iosxevxlan.py](../scripts/iosxevxlan.py).  
+The parsers also inheriting from Genie Metaparser.  The configuration of Metaparser is outside the scope of this workshop
+but further details can be found at - [Metaparser](https://pubhub.devnetcloud.com/media/pyats-packages/docs/metaparser/index.html)
 
-We will then combine the output of both show commands into one structured data object.  This is in essence how the 
-Ops package works.
+---
 
-In production you would most likely leverage the Metaparser package in order to cater for different device 
-communication methods as well as qualifying returned data with the Metaparser schema engine.  
+If you have an iPython session running. Close and restart iPython
 
+Initiate an iPython interactive session and intialise the testbed
 
-The Base Ops class requires that a Metaparser object is used, therefore we shall 
-For the purposes of
+```bash
 
+$ ipython
 
-this exercise will not be using the Metaparser package.  Details on Metaparser can be found at - 
-[Metaparser Package](https://pubhub.devnetcloud.com/media/pyats-packages/docs/metaparser/index.html)
+import pprint
+from genie.conf import Genie
+testbed = Genie.init('vagrant_multi_ios.yaml')
+uut = testbed.devices.iosxe1
+uut.connect()
 
-
-To begin with create two classes that will define the parsers we shall use
-
-ShowNvePeers
-
-and 
-
-ShowNveVni
-
-The classes have already been created and should be viewed prior to continuing -
+```    
 
 
+First we shall import from Genie ops the Base class.  We will create a class that will inherit from 'Base' to leverage the
+'Maker' functionality.  
+'Maker' simplifies the process of mapping parsers output to the ops object attributes.  
+
+In addition we will import the parsers that were created earlier.
+
+Enter the code below into your ipython session
+
+```python
+from genie.ops.base import Base
+from iosxevxlan import ShowNveVni,ShowNvePeers
+
+```
+
+We now create a class that will be our Ops object, named Vxlan.  This class inherits from the Base class of Genie Ops.  
+A method which referred to as _learn_ is created.  The remaining code performs the following functions  
+
+* Runs a for loop issuing the commands for the parsers and then adds data (add_leaf) to the new Ops object structure.
+* src is the dictionary item from the parsed output. For example '['(?P<interf>.*)][VNI]' will equate to the value of VNI (6001)
+* dest is where the data will be placed in the new object structure referenced as info.  In this case the src and dest keys are the same
+but this does not have to be the case
+* Finally the make() is invoked to finalise the new object structure.
+
+```python
+class Vxlan(Base):
+
+    def learn(self, custom=None):
 
 
-### Metaparser Package
+        # Capture output from ShowNveVni parser
+        src = '[(?P<interf>.*)]'
+        dest = 'info[(?P<interf>.*)]'
+        req_keys = ['[VNI]','[Multicast-group]','[VNIstate]','[Mode]']
+        for key in req_keys:
+            self.add_leaf(cmd=ShowNveVni,
+                          src=src + '[{}]'.format(key),
+                          dest=dest + '[{}]'.format(key))
 
-There exists multiple ways to parse the device output, with different packages with each their style. 
-There also exist multiple ways to communicate with the device (Cli, Xml, Rest, Yang, etc.) with each providing 
-different structure for the same information!
 
-Metaparser role is to unify those packages, into one location and one structure. 
-A unified collection of parser, which works across multiple parser packages, and across multiple communication 
-protocols and still returns a common structure. Metaparser allows to have one script which works across 
-multiple OS, multiple communication protocol and parsing packages.
+        # Capture ouptut from ShowNveVni parser
+        src = '[(?P<nvename>.*)]'
+        dest = 'info[(?P<nvename>.*)]'
+        req_keys = ['[Peer-IP]','[Router-RMAC]','[Type]','[state]']
+        for key in req_keys:
+            self.add_leaf(cmd=ShowNvePeers,
+                          src=src + '[{}]'.format(key),
+                          dest=dest + '[{}]'.format(key))
 
-As we are only dealing with CLI and IOSXE we are not using the full power of the Metaparser package, but are leveraging
-the schema engine.
-The schema engine controls how and what the information is parsed should be structured.
+        #Add ops data to the Vxlan ojbect
+        self.make()
+```
+
+Finally create a new ops object called myvxlan and learn from the device
+
+```python
+myvxlan = Vxlan(device=uut)
+
+myvxlan.info
+
+```
 
 
 

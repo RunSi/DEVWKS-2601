@@ -13,7 +13,7 @@ class Vxlan(Base):
     def learn(self, custom=None):
 
 
-        # Capture ouptut from ShowNveVni parser
+        # Capture output from ShowNveVni parser
         src = '[(?P<interf>.*)]'
         dest = 'info[(?P<interf>.*)]'
         req_keys = ['[VNI]','[Multicast-group]','[VNIstate]','[Mode]']
@@ -34,3 +34,4 @@ class Vxlan(Base):
 
         #Add ops data to the Vxlan ojbect
         self.make()
+
