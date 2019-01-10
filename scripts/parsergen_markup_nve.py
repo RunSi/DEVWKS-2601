@@ -22,44 +22,34 @@ __version__ = "0.1.0"
 __copyright__ = "Copyright (c) 2019 Cisco and/or its affiliates."
 __license__ = "Cisco Sample Code License, Version 1.0"
 
+
 from genie.conf import Genie
 from genie import parsergen
-
 from pprint import pprint
 
+#open marked up text file and read into variable
+f = open('markup.txt', 'r')
+markedupIOSX = f.read()
 
+#initiate testbed
 testbed = Genie.init('vagrant_single_ios.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
 
+#extend parsergen markup with text file indicating elements to parse
+parsergen.extend_markup(markedupIOSX)
 
-show_cmds = {
-     'iosxe': {
-        'show_int' : "show nve interface {}",
-     }
-}
+#identify which parsed element to check as true
+attrValPairsToCheck = [
+    ('nve.intf.encap', 'Vxlan'),]
 
-regex = {
+#parsergen will connect to device and issue show nve interface nve1
+#Will check for elements to be parsed and create a dictionary
+pgfill = parsergen.oper_fill(device=uut,
+    show_command=\
+('show_nve_interface', [], {'ifname':'nve1'}),
+attrvalpairs=attrValPairsToCheck,
+refresh_cache=True, regex_tag_fill_pattern='nve\.intf')
 
-    'iosxe': {
-        'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
-        'nve.intf.source_intf': r'^source-interface:\s+(\w+)',
-        'nve.intf.primary': r'source\-interface:[a-zA-Z0-9\s]+\(primary:([A-Fa-f0-9:\.]+)',
-     }
-}
-
-regex_tags = {
-    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf', 'nve.intf.primary']
-    }
-
-parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
-
-attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
-pgfill = parsergen.oper_fill (
-    uut,
-    ('show_int', ['nve1']),
-    attrValPairsToParse,
-    refresh_cache=True,
-    regex_tag_fill_pattern='nve\.intf')
 pgfill.parse()
 pprint(parsergen.ext_dictio)
