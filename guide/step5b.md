@@ -82,16 +82,13 @@ pgfill = parsergen.oper_fill(device=uut,
                              refresh_cache=True, 
                              regex_tag_fill_pattern='nve\.intf')
 ```
-Now call the parse method for the object pgfill
+Now call the parse method for the object pgfill and print
 
 ```python
 pgfill.parse()
-```
 
-Print the parsed output
+print(parsergen.ext_dictio
 
-```python
-print(parsergen.ext_dictio)
 ```
 
 

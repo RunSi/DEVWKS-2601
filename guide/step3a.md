@@ -42,11 +42,7 @@ The commands above will:-
 Access to the devices needs to be established prior to sending any additional GENIE API calls to the device, leveraging
 the topology _connect_ method. 
 
-First make a reference to the topology device object
-
-```python
-uut = testbed.devices.iosxe1
-```
+First make a reference to the topology device object  
 
 As mentioned previously the device object has a method called connect.  Using the connect method will establish a connection to the device
 using the connection method described in the topology yaml file, in this case _ssh_.  You will know that a connection is successful with the 
@@ -54,25 +50,26 @@ output from the device being displayed in the interactive session. Once connecti
 for further calls on the device.
 
 ```python
+uut = testbed.devices.iosxe1
+
 uut.connect()
 ```
+
 
 ---
 
 ### Learn the state of the interfaces on the device under test (iosxe1)
 
 First an interface Ops object needs to instantiated.  The argument for instantiating the object is the device that is
-being tested, defined earlier as _uut_.
-
-```python
-interface = Interface(device=uut)
-```
+being tested, defined earlier as _uut_.  
 
 The _interface_ object that has been instantiated has a **learn** method.  The learn method will send several 
 relevant show commands to an IOSXE device.  The output of the show commands will be parsed and collated and subsequently stored
 as a single structured data entity(dictionary).
 
 ```python
+interface = Interface(device=uut)
+
 interface.learn()
 ```
 

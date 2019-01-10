@@ -104,15 +104,15 @@ pgfill = parsergen.oper_fill (
 
 
 Now enter the parse method for pgfill to populate parsergen ext_dictio attribute with the parsed items
+
 ```python
 pgfill.parse()
-```
 
-Display the completed parse with
-
-```python
 pprint(parsergen.ext_dictio)
+
 ```
+
+
 
 ---
 

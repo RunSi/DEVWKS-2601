@@ -68,6 +68,14 @@ open runinfo/vxlancheckjob.xxxxxxxxxxxxxxxx/TaskLog.html
 
 ## Congratulations you have now finished the DEVWKS-2601 Workshop
 
+---
+
+*Restore the laptop to it's initial state*
+
+```bash
+$ ./lab_cleanup.sh
+```
+
 ### Be sure to attend DEVWKS-2595 Stateful Network Validation using pyATS + GENIE
 
 
