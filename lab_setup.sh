@@ -4,4 +4,4 @@ source venv/bin/activate
 pip install -r requirements.txt
 cd lab_build
 Vagrant up
-cd ..
+cd ../scripts/
