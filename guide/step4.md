@@ -17,7 +17,7 @@ The object of the remaining exercises is to
 * Run a pyATS easypy script to test condition of VXLAN state
 
 
-###Tabular Parsing
+### Tabular Parsing
 
 The Genie Parsergen Class can deal with both Tabular and Non Tabular device output from a networking device. We 
 shall initially explore Tabular parsing
@@ -48,8 +48,6 @@ As in previous sections initiate the testbed topology and import the relevant li
 import pprint
 from genie.conf import Genie
 from genie import parsergen
-
-from genie.libs.ops.interface.iosxe.interface import Interface
 
 testbed = Genie.init('vagrant_single_ios.yaml')
 uut = testbed.devices.iosxe1
@@ -104,7 +102,7 @@ import re
 from pprint import pprint
 
 #Create Testbed Object with Genie
-testbed = Genie.init('vagrant_multi_ios.yaml')
+testbed = Genie.init('vagrant_single_ios.yaml')
 
 #Create Device Object
 uut = testbed.devices.iosxe1
