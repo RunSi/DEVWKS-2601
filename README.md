@@ -19,8 +19,6 @@ pyATS - Python Automated Test Systems is a Python3 based test automation infrast
 It is developed as the next-generation Cisco mainstream automation infrastructure, is compatible to existing tooling & 
 infrastructure, and is officially endorsed by Cisco executive team.  
 
-Further information on pyATS can be found on [DevNet](https://developer.cisco.com/site/pyats/)
-
 ## The Lab
 
 
@@ -46,3 +44,25 @@ Vagrant VM Boxes must be named - _iosxe/16.08.01_ - Alternatively modify [Vagran
 
 ### To start please proceed to [Step1](/guide/step1.md)
 
+
+
+
+## Authors & Maintainers
+
+Smart people responsible for the creation and maintenance of this project:
+
+- Simon Hart <sihart@cisco.com>
+
+## Credits
+
+The code snippets and lab could not have been created without the excellent support and guidance form the Cisco ASG Genie Development team 
+- 2018 Pioneer Award Winners.  
+In particular [Siming Yuan](https://github.com/siming85), [Jean-Benoit Aubin](https://github.com/jeaubin) and [Karim Mohamed](https://github.com/karmoham).  Could not have done without 
+support of [Kevin Corbin](https://github.com/kecorbin) either.
+
+Further information on pyATS can be found on [DevNet](https://developer.cisco.com/site/pyats/)
+
+## License
+
+This project is licensed to you under the terms of the [Cisco Sample
+Code License](./LICENSE).
