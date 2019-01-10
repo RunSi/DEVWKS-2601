@@ -14,7 +14,7 @@ Now 'relearn' the interface object and display the output
 ```python
 interface.learn()
 
-pprint.pprint(interface.info)
+pprint(interface.info)
 
 ```
 
@@ -38,6 +38,7 @@ the interface is still down then an Exception will be raised.
 Enter the code as is below to your iPython session
 
 ````python
+interface = Interface(device=uut)
 
 def verify_interface_status(obj):
     if obj.info['GigabitEthernet3'].get('oper_status', None) and\
@@ -74,7 +75,7 @@ initiate the learn method, you are effectively taking a snapshot of current stat
 The code below will demonstrate, please enter into iPython:-
 
 ```python
-interface_before = Interface(device=uut)
+interface_before = Interface(device=uut, attributes=['info[(.*)][bandwidth]'])
 interface_before.learn()
 
 ```
@@ -95,7 +96,7 @@ bandwidth 50000
 Now enter the following code:-
 
 ```python
-interface_after = Interface(device=uut)
+interface_after = Interface(device=uut, attributes=['info[(.*)][bandwidth]')
 interface_after.learn()
 
 ```

@@ -107,7 +107,7 @@ Import the Genie Class from genie.conf and initiate the testbed file
 ```python
 from genie.conf import Genie
 
-testbed = Genie.init('vagrant_multi_ios.yaml')
+testbed = Genie.init('vagrant_single_ios.yaml')
 
 ```
 
