@@ -92,6 +92,11 @@ print(parsergen.ext_dictio
 ```
 
 
+Disconnect from the device
+```python
+uut.disconnect()
+```
+
 ---
 
 

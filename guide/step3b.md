@@ -109,6 +109,11 @@ print(diff)
 
 ```
 
+Disconnect from the device
+```python
+uut.disconnect()
+```
+
 ---
 
 **Conclusion**

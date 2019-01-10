@@ -90,6 +90,11 @@ myvxlan.info
 
 ```
 
+Disconnect from the device
+```python
+uut.disconnect()
+```
+
 ### You have successfully created a VxLAN Ops Model.
 
 

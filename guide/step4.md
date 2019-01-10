@@ -34,7 +34,7 @@ parsergen as to the titles of the columns.  Follow the commands below to parse t
 
 To start make sure that your Python Virtual Environment is still running from step 3 and that you are in 
 the scripts directory.
-Initiate an iPython interactive session
+If not already running initiate an iPython interactive session
 
 ```bash
 
@@ -87,6 +87,11 @@ type(result.entries)
 ```
 
 As you will see the returned data is now structured data in the form of a dictionary
+
+Disconnect from the device
+```python
+uut.disconnect()
+```
 
 ---
 
