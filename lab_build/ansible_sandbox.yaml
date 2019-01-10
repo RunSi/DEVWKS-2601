@@ -1,6 +1,7 @@
 ##############################################################
-# Sample: Ansible Playbook for two IOSXE routers as part of
-#         pyATS lab. The file was created based upon the
+# Sample: Ansible Playbook for one IOSXE router as part of
+#         pyATS lab, when used in conjunction withe DevNet
+#         IOS Sandbox. The file was created based upon the
 #         original IOS XE programmabililty file by
 #         Hank Preston <hapresto@cisco.com>
 # Author: Simon Hart <sihart@cisco.com>
