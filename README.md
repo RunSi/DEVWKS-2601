@@ -1,4 +1,4 @@
-# Devnet Workshop (DVWKS2601)- pyATS Genie Ops and Parsers
+# Devnet Workshop (DEVWKS-2601)- pyATS Genie Ops and Parsers
 ---
 
 ### Table of Contents
