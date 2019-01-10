@@ -1,4 +1,5 @@
 #!/bin/bash
 cd lab_build
 vagrant destroy
-cd ..
+cd ../../
+rm -rf DEVWKS-2601
