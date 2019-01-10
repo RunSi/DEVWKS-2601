@@ -55,7 +55,7 @@ Smart people responsible for the creation and maintenance of this project:
 
 ## Credits
 
-The code snippets and lab could not have been created without the excellent support and guidance form the Cisco ASG Genie Development team, 
+The code snippets and lab could not have been created without the excellent support and guidance from the Cisco ASG Genie Development team, 
 2018 Pioneer Award Winners.  
 In particular [Siming Yuan](https://github.com/siming85), [Jean-Benoit Aubin](https://github.com/jeaubin) and [Karim Mohamed](https://github.com/karmoham).  Could not have done without 
 support of [Kevin Corbin](https://github.com/kecorbin) either.
