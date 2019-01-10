@@ -8,7 +8,7 @@ in the show command output.
 Consider the following output from the _show nve interface nve 1_ .  
 We shall parse the data to retrieve Source_Interface and Primary address based upon an encapsulation of Vxlan
 
-```python
+```bash
 
 Interface: nve1, State: Admin Up, Oper Up, Encapsulation: Vxlan,
 BGP host reachability: Disable, VxLAN dport: 4789
@@ -35,9 +35,7 @@ from pprint import pprint
 from genie.conf import Genie
 from genie import parsergen
 
-from genie.libs.ops.interface.iosxe.interface import Interface
-
-testbed = Genie.init('vagrant_multi_ios.yaml')
+testbed = Genie.init('vagrant_single_ios.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
 

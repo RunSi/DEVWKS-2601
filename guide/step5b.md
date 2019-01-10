@@ -16,9 +16,8 @@ import pprint
 from genie.conf import Genie
 from genie import parsergen
 
-from genie.libs.ops.interface.iosxe.interface import Interface
 
-testbed = Genie.init('vagrant_multi_ios.yaml')
+testbed = Genie.init('vagrant_single_ios.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
 
