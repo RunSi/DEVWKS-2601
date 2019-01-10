@@ -7,7 +7,7 @@
 # Author: Simon Hart <sihart@cisco.com>
 #
 # ansible_provision.yaml
-# Will configure the two routers via the Ansible netconf plugin:
+# Will configure the router via the Ansible netconf plugin:
 # The ansible playbook will perform the following
 # - Provision an IOS XE Device through Ansible
 # - Enable NETCONF/RESTCONF APIs
