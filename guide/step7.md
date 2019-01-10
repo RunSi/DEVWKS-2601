@@ -20,17 +20,24 @@ Now run the following command in your terminal session
 easypy vxlancheckjob.py -html_logs -no_archive -testbed_file vagrant_single_ios.yaml 
 ```
 
-Once completed open up the Task.html file in the runinfo directory
+Once completed review the report file generated
+
+```bash
+less runinfo/vxlancheckjob.xxxxxxxxxxxxxxx/vxlancheckjob.report
+```
+
+And then open up the Task.html file in the runinfo directory
 
 ```bash
 open runinfo/vxlancheckjob.xxxxxxxxxxxxxxxx/TaskLog.html
 ```
 
-Once you have reviewed the web page enter the following commands
+Once you have reviewed the web page and the report enter the following commands
 
 ```bash
 rm -rf runinfo
 ```
+
 
 From your terminal ssh into your device
 
@@ -50,9 +57,11 @@ Exit the session from your device and rerun Easypy
 easypy vxlancheckjob.py -html_logs -no_archive -testbed_file vagrant_single_ios.yaml 
 ```
 
-And finally open up the Task.html file
+And finally review the report and open the Task.html file
 
 ```bash
+less runinfo/vxlancheckjob.xxxxxxxxxxxxxxx/vxlancheckjob.report
+
 open runinfo/vxlancheckjob.xxxxxxxxxxxxxxxx/TaskLog.html
 ```
 

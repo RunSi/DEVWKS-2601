@@ -7,7 +7,7 @@ $ git clone https://github.com/RunSi/DevNet-2601.git
 
 $ cd DevNet2601
 
-$ source lab_script.sh
+$ source lab_setup.sh
 ```
 
 ### Lab_script
