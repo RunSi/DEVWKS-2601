@@ -43,16 +43,14 @@ regex = {
 
     'iosxe': {
         'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
-        'nve.intf.vxlandport' : r'[a-zA-Z0-9\:\,\s]+dport:\s+([a-zA-Z0-9\s\]+)',
         'nve.intf.source_intf': r'^source-interface:\s+(\w+)',
         'nve.intf.primary': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:(\d+\.\d+\.\d+\.\d+)',
-        'nve.intf.name': r'^Interface:\s+([a-zA-Z0-9]+)',
      }
 }
 
 regex_tags = {
-    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf', 'nve.intf.primary','nve.intf.name', 'nve.intf.vxlandport']
-    }
+    'iosxe': ['nve.intf.primary','nve.intf.if_encap',  'nve.intf.source_intf', ]
+}
 
 parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
 
@@ -65,3 +63,5 @@ pgfill = parsergen.oper_fill (
     regex_tag_fill_pattern='nve\.intf')
 pgfill.parse()
 pprint(parsergen.ext_dictio)
+
+uut.disconnect()
