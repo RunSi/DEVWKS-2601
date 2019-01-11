@@ -7,7 +7,7 @@ $ git clone https://github.com/RunSi/DEVWKS-2601.git
 
 $ cd DEVWKS-2601
 
-$ source lab_setup.sh
+$ source ./lab_setup.sh
 ```
 
 ### Lab_script
