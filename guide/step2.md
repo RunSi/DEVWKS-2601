@@ -94,11 +94,9 @@ The testbed object will have a number of attributes, objects and methods, a set 
 
 ### Load the Genie Class and instantiate the testbed file
 
-Change directory and run an iPython interactive shell:-
+Run an iPython interactive shell:-
 
 ```bash
-$cd scripts
-
 $iPython
 ```
 
