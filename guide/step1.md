@@ -2,16 +2,16 @@
 
 ### Sandbox Guide
 
-In order to follow this lab please clone the DevNet2601 repository from github
+In order to follow this lab please clone the DEVWKS-2601 repository from github
 
 ```bash
 $ git clone https://github.com/RunSi/DEVWKS-2601.git
 
-$ cd DevNet2601
-
-$ source lab_setup.sh
+$ cd DEVWKS-2601
 
 $ git checkout sandbox
+
+$ source lab_setup.sh
 
 ```
 
