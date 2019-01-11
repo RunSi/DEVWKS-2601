@@ -27,10 +27,10 @@ The files within this Github repository should be cloned to the local machine.
 The objective of this lab is to:
 
 * Become familiar with connecting to a testbed
-* Leverage to the Genie Ops libraries for retrieving operational data
+* Leverage the Genie Ops libraries for retrieving operational data
 * Explore the models and parsers leveraged by Genie Ops
 * To become familiar with the Genie Parsergen library
-* To start the journey on creating your own simple libraries
+* To start the journey on creating your own simple or even libraries
 
 ## Pre-requisites
 
