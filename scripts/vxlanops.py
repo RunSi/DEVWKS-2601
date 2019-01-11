@@ -29,7 +29,7 @@ from genie.ops.base import Base
 
 #
 # Import Show nve neighbor and Show nve peers parsers
-from iosxevxlan import ShowNveVni,ShowNvePeers
+from iosxevxlan import ShowNveVni,ShowNvePeers,ShowNveIntf
 
 #Create the Vxlan Ops Class
 class Vxlan(Base):
@@ -53,6 +53,14 @@ class Vxlan(Base):
         req_keys = ['[Peer-IP]','[Router-RMAC]','[Type]','[state]']
         for key in req_keys:
             self.add_leaf(cmd=ShowNvePeers,
+                          src=src + '[{}]'.format(key),
+                          dest=dest + '[{}]'.format(key))
+
+        src = '[(?P<nveint>.*)]'
+        dest = 'info[Intf_Details]'
+        req_keys = ['[nve.intf.if_encap]','[nve.intf.primary]','[nve.intf.source_intf]','[state]']
+        for key in req_keys:
+            self.add_leaf(cmd=ShowNveIntf,
                           src=src + '[{}]'.format(key),
                           dest=dest + '[{}]'.format(key))
 
