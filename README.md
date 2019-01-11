@@ -58,7 +58,8 @@ Smart people responsible for the creation and maintenance of this project:
 The code snippets and lab could not have been created without the excellent support and guidance from the Cisco ASG Genie Development team, 
 2018 Pioneer Award Winners.  
 In particular [Siming Yuan](https://github.com/siming85), [Jean-Benoit Aubin](https://github.com/jeaubin) and [Karim Mohamed](https://github.com/karmoham).  Could not have done without 
-support of [Kevin Corbin](https://github.com/kecorbin) either.
+support of [Kevin Corbin](https://github.com/kecorbin) either, and lastly by now means least [Hank Preston](https://github.com/hpreston) for the 
+Box Building and Vagrants plagiarism.
 
 Further information on pyATS can be found on [DevNet](https://developer.cisco.com/site/pyats/)
 
