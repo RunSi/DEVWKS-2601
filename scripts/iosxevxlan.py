@@ -120,3 +120,58 @@ class ShowNveVni(ShowNveVniSchema):
         result = parsergen.oper_fill_tabular(device_output=output, device_os='iosxe', header_fields=header, label_fields=label, index=[0])
 
         return result.entries
+
+
+# =============================================
+# Parser for 'show nve vni'
+# =============================================
+
+class ShowNveIntfSchema(MetaParser):
+    """Schema for show vni peers
+    """
+
+    schema = {
+        Any():{
+                'nve.intf.if_encap': str,
+                'nve.intf.primary': str,
+                'nve.intf.source_intf': str,
+           },
+        }
+
+class ShowNveIntf(ShowNveIntfSchema):
+# class ShowNveVni():
+    """ Parser for nve vni """
+
+    def cli(self):
+        # excute command to get output
+        show_cmds = {
+            'iosxe': {
+                'show_int': "show nve interface {}",
+            }
+        }
+
+        regex = {
+
+            'iosxe': {
+                'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
+                'nve.intf.source_intf': r'^source-interface:\s+(\w+)',
+                'nve.intf.primary': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:(\d+\.\d+\.\d+\.\d+)',
+            }
+        }
+
+        regex_tags = {
+            'iosxe': ['nve.intf.primary', 'nve.intf.if_encap', 'nve.intf.source_intf', ]
+        }
+
+        parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
+
+        attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
+        pgfill = parsergen.oper_fill(
+            self.device,
+            ('show_int', ['nve1']),
+            attrValPairsToParse,
+            refresh_cache=True,
+            regex_tag_fill_pattern='nve\.intf')
+        pgfill.parse()
+
+        return parsergen.ext_dictio
