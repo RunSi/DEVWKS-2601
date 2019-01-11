@@ -54,7 +54,7 @@ shut
 Exit the session from your device and rerun Easypy
 
 ```bash
-easypy vxlancheckjob.py -html_logs -no_archive -testbed_file vagrant_single_ios.yaml 
+easypy vxlancheckjob.py -html_logs -no_archive -testbed_file sandbox_iosxe.yaml 
 ```
 
 And finally review the report and open the Task.html file
