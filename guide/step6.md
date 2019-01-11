@@ -66,12 +66,21 @@ class Vxlan(Base):
                           dest=dest + '[{}]'.format(key))
 
 
-        # Capture ouptut from ShowNveVni parser
+        # Capture ouput from ShowNvePeers parser
         src = '[(?P<nvename>.*)]'
         dest = 'info[(?P<nvename>.*)]'
         req_keys = ['[Peer-IP]','[Router-RMAC]','[Type]','[state]']
         for key in req_keys:
             self.add_leaf(cmd=ShowNvePeers,
+                          src=src + '[{}]'.format(key),
+                          dest=dest + '[{}]'.format(key))
+
+        # Capture output from ShowNveIntf parser
+        src = '[(?P<nveint>.*)]'
+        dest = 'info[nve1]'
+        req_keys = ['[nve.intf.if_encap]','[nve.intf.primary]','[nve.intf.source_intf]']
+        for key in req_keys:
+            self.add_leaf(cmd=ShowNveIntf,
                           src=src + '[{}]'.format(key),
                           dest=dest + '[{}]'.format(key))
 
