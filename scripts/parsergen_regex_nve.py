@@ -44,7 +44,7 @@ regex = {
     'iosxe': {
         'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
         'nve.intf.source_intf': r'^source-interface:\s+(\w+)',
-        'nve.intf.primary': r'source\-interface:[a-zA-Z0-9\s]+\(primary:([A-Fa-f0-9:\.]+)',
+        'nve.intf.primary': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:(\d+\.\d+\.\d+\.\d+)',
      }
 }
 
