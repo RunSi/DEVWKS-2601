@@ -5,7 +5,7 @@
 In order to follow this lab please clone the DevNet2601 repository from github
 
 ```bash
-$ git clone https://github.com/RunSi/DevNet-2601.git
+$ git clone https://github.com/RunSi/DEVWKS-2601.git
 
 $ cd DevNet2601
 
