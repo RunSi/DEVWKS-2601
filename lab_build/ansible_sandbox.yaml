@@ -34,7 +34,7 @@
           port: "{{ssh_port}}"
           username: "{{username}}"
           password: "{{password}}"
-        hostname: "{{ inventory_hostname }}"
+        hostname: "iosxe1"
 
 
     - name: Configure Interfaces
