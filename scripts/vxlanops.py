@@ -57,7 +57,7 @@ class Vxlan(Base):
                           dest=dest + '[{}]'.format(key))
 
         src = '[(?P<nveint>.*)]'
-        dest = 'info[Intf_Details]'
+        dest = 'info[(?P<nveint>.*)'
         req_keys = ['[nve.intf.if_encap]','[nve.intf.primary]','[nve.intf.source_intf]','[state]']
         for key in req_keys:
             self.add_leaf(cmd=ShowNveIntf,
