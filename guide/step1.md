@@ -21,9 +21,8 @@ Your development environment will be setup by 'sourcing' lab_script.sh
 The script performs the following actions:-
 
 * Sets up a local python3 virtual environment and installs all necessary
- dependencies.  
-* Brings up a CSR1000v using Vagrant  
-* Configures the CSR1000v for:-  
+ dependencies.   
+* Configures the Sandbox CSR1000v for:-  
     * Netconf
     * Interface configuration
     * Loopback configuration
