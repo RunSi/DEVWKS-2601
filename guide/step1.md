@@ -11,7 +11,7 @@ $ cd DEVWKS-2601
 
 $ git checkout sandbox
 
-$ source lab_setup.sh
+$ source ./lab_setup.sh
 
 ```
 
