@@ -96,7 +96,7 @@ bandwidth 50000
 Now enter the following code:-
 
 ```python
-interface_after = Interface(device=uut, attributes=['info[(.*)][bandwidth]')
+interface_after = Interface(device=uut, attributes=['info[(.*)][bandwidth]'])
 interface_after.learn()
 
 ```
