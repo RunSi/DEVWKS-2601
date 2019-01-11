@@ -28,7 +28,7 @@ from genie import parsergen
 from pprint import pprint
 
 
-testbed = Genie.init('vagrant_single_ios.yaml')
+testbed = Genie.init('sandbox_iosxe.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
 

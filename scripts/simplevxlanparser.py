@@ -32,7 +32,7 @@ import re
 from pprint import pprint
 
 #Create Testbed Object with Genie
-testbed = Genie.init('vagrant_multi_ios.yaml')
+testbed = Genie.init('sandbox_iosxe.yaml')
 
 #Create Device Object
 uut = testbed.devices.iosxe1
