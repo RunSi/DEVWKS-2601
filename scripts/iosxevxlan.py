@@ -143,12 +143,13 @@ class ShowNveIntf(ShowNveIntfSchema):
     """ Parser for nve vni """
 
     def cli(self):
-        # excute command to get output
+        excute command to get output
         show_cmds = {
             'iosxe': {
                 'show_int': "show nve interface {}",
             }
         }
+
 
         regex = {
 
@@ -159,9 +160,10 @@ class ShowNveIntf(ShowNveIntfSchema):
             }
         }
 
-        regex_tags = {
-            'iosxe': ['nve.intf.primary', 'nve.intf.if_encap', 'nve.intf.source_intf', ]
-        }
+
+
+        regex_tags = {'iosxe':['nve.intf.primary', 'nve.intf.if_encap', 'nve.intf.source_intf', ]}
+
 
         parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
 
