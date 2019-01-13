@@ -60,14 +60,18 @@ regex = {
 
     'iosxe': {
         'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
+        'nve.intf.ifname': r'^Interface:\s(\w+)',
+        'nve.intf.vxdport': r'[a-zA-Z0-9\:\,\s]+\sVxLAN\sdport:\s(\w+)',
         'nve.intf.source_intf': r'^source-interface:\s+(\w+)',
-        'nve.intf.primary': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:(\d+\.\d+\.\d+\.\d+)'
-     }
+        'nve.intf.primary': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:(\d+\.\d+\.\d+\.\d+)',
+        'nve.intf.vrf': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:\d+\.\d+\.\d+\.\d+\s+vrf:(\w+)\)',
+    }
 }
 
 regex_tags = {
-    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf', 'nve.intf.primary']
-    }
+    'iosxe': ['nve.intf.if_encap', 'nve.intf.ifname', 'nve.intf.vxdport', 'nve.intf.source_intf',
+              'nve.intf.primary', 'nve.intf.vrf']
+}
 
 ```
 
@@ -143,13 +147,18 @@ regex = {
 
     'iosxe': {
         'nve.intf.if_encap': r'[a-zA-Z0-9\:\,\s]+Encapsulation:\s+(\w+),',
+        'nve.intf.ifname': r'^Interface:\s(\w+)',
+        'nve.intf.vxdport': r'[a-zA-Z0-9\:\,\s]+\sVxLAN\sdport:\s(\w+)',
         'nve.intf.source_intf': r'^source-interface:\s+(\w+)',
-        'nve.intf.primary': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:(\d+\.\d+\.\d+\.\d+)'
-     }
+        'nve.intf.primary': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:(\d+\.\d+\.\d+\.\d+)',
+        'nve.intf.vrf': r'[a-zA-Z0-9\:\-\s]+Loopback[a-zA-Z0-9\s\(]+\:\d+\.\d+\.\d+\.\d+\s+vrf:(\w+)\)',
+    }
 }
 
 regex_tags = {
-    'iosxe': ['nve.intf.if_encap',  'nve.intf.source_intf']}
+    'iosxe': ['nve.intf.if_encap', 'nve.intf.ifname', 'nve.intf.vxdport', 'nve.intf.source_intf',
+              'nve.intf.primary', 'nve.intf.vrf']
+}
 
 parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
 
