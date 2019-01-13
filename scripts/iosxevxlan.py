@@ -147,7 +147,7 @@ class ShowNveIntf(ShowNveIntfSchema):
     """ Parser for nve vni """
 
     def cli(self):
-        excute command to get output
+        #excute command to get output
         show_cmds = {
             'iosxe': {
                 'show_int': "show nve interface {}",
