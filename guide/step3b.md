@@ -41,8 +41,7 @@ Enter the code as is below to your iPython session
 interface = Interface(device=uut)
 
 def verify_interface_status(obj):
-    if obj.info['GigabitEthernet3'].get('oper_status', None) and\
-       obj.info['GigabitEthernet3']['oper_status'] == 'up':
+    if obj.info['GigabitEthernet3']['oper_status'] == 'up':
        print('\n\nGig 3 is up')
        return
     raise Exception('Gig 3 is currently down')
