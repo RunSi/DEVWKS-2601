@@ -135,7 +135,7 @@ from pprint import pprint
 testbed = Genie.init('vagrant_single_ios.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
-
+ 
 
 show_cmds = {
      'iosxe': {

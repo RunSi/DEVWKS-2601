@@ -24,6 +24,7 @@ __license__ = "Cisco Sample Code License, Version 1.0"
 
 from genie.conf import Genie
 from genie import parsergen
+import logging
 
 from pprint import pprint
 
