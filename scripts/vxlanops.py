@@ -61,9 +61,10 @@ class Vxlan(Base):
         dest = 'info[nve1]'
         req_keys = ['[nve.intf.if_encap]','[nve.intf.primary]','[nve.intf.source_intf]']
         for key in req_keys:
+            key_strip = key[10:]
             self.add_leaf(cmd=ShowNveIntf,
                           src=src + '[{}]'.format(key),
-                          dest=dest + '[{}]'.format(key))
+                          dest=dest + '[{}]'.format(key_strip))
 
         #Add ops data to the Vxlan ojbect
         self.make()
