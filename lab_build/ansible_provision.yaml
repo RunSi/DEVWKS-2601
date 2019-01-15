@@ -36,6 +36,9 @@
           password: "{{password}}"
         hostname: "iosxe1"
 
+    - name: Pause for NETCONF/RESTCONF to start
+      pause:
+        seconds: 45
 
     - name: Configure Interfaces
       with_items: "{{interfaces}}"
@@ -116,6 +119,7 @@
                </config>
 
     - name: Configure Bridge Domain
+      with_items: "{{nves}}"
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -127,9 +131,9 @@
                 <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                   <bridge-domain>
                     <brd-id xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bridge-domain">
-                      <bridge-domain-id>1</bridge-domain-id>
+                      <bridge-domain-id>{{item.bd}}</bridge-domain-id>
                       <member>
-                        <vni>6001</vni>
+                        <vni>{{item.vni}}</vni>
                         <member-interface>
                           <interface>Gigabitethernet3</interface>
                           <service-instance>1</service-instance>
@@ -141,8 +145,8 @@
               </config>
 
     - name: Configure VXLAN
+      with_items: "{{nves}}"
       netconf_config:
-        with_items: "{{nves}}"
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
         hostkey_verify: false
@@ -153,9 +157,9 @@
                 <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                    <interface>
                     <nve>
-                      <name></name>
+                      <name>{{item.interface_id}}</name>
                       <source-interface>
-                        <Loopback>{{item.interface_id}}</Loopback>
+                        <Loopback>{{item.loopback}}</Loopback>
                       </source-interface>
                       <member>
                         <vni>
@@ -183,6 +187,7 @@
               </config>
 
     - name: Bring VXLAN NVE up
+      with_items: "{{nves}}"
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -194,7 +199,7 @@
                 <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                   <interface>
                     <nve>
-                      <name>1</name>
+                      <name>{{item.interface_id}}</name>
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
                     </nve>
                   </interface>
