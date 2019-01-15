@@ -38,7 +38,14 @@ nves:
     loopback: 10
     vni: 6010
     ingress_rep: 172.16.40.1
-
+  - interface_id: nve1
+    loopback: 20
+    vni: 6020
+    ingress_rep: 172.16.50.1
+  - interface_id: nve1
+    loopback: 30
+    vni: 6030
+    ingress_rep: 172.16.60.1
 
 
 networks:

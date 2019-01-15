@@ -27,20 +27,6 @@
       pause:
         seconds: 5
 
-    - name: Configure NETCONF and RESTCONF
-      ios_config:
-        provider:
-          host: "{{mgmt_ip}}"
-          port: "{{ssh_port}}"
-          username: "{{username}}"
-          password: "{{password}}"
-        lines:
-          - netconf-yang
-          - netconf-yang cisco-odm polling-enable
-          - restconf
-          - ip http server
-          - ip http secure-server
-
     - name: Configure System Settings
       ios_system:
         provider:
@@ -48,13 +34,7 @@
           port: "{{ssh_port}}"
           username: "{{username}}"
           password: "{{password}}"
-        hostname: "{{ inventory_hostname }}"
-
-
-    - name: Pause for NETCONF/RESTCONF to start
-      pause:
-        seconds: 45
-
+        hostname: "iosxe1"
 
 
     - name: Configure Interfaces
@@ -125,7 +105,7 @@
                         <neighbor>
                           <id>{{neighbor}}</id>
                           <remote-as>{{remote_as}}</remote-as>
-                        </neighbor> 
+                        </neighbor>
                         <network>
                           <number>{{item.network}}</number>
                           <mask>255.255.255.0</mask>
@@ -135,7 +115,7 @@
                   </native>
                </config>
 
-    - name: Configure VXLAN
+    - name: Configure Bridge Domain
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -157,16 +137,30 @@
                       </member>
                     </brd-id>
                   </bridge-domain>
+                </native>
+              </config>
+
+    - name: Configure VXLAN
+      netconf_config:
+        with_items: "{{nves}}"
+        host: "{{mgmt_ip}}"
+        port: "{{netconf_port}}"
+        hostkey_verify: false
+        username: "{{username}}"
+        password: "{{password}}"
+        xml: |
+              <config>
+                <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                    <interface>
                     <nve>
-                      <name>1</name>
+                      <name></name>
                       <source-interface>
-                        <Loopback>10</Loopback>
+                        <Loopback>{{item.interface_id}}</Loopback>
                       </source-interface>
                       <member>
                         <vni>
-                          <vni-range>6001</vni-range>
-                          <ingress-replication>{{ingress_rep}}</ingress-replication>
+                          <vni-range>{{item.vni}}</vni-range>
+                          <ingress-replication>{{item.ingress_rep}}</ingress-replication>
                         </vni>
                       </member>
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="create"/>
@@ -206,7 +200,3 @@
                   </interface>
                 </native>
               </config>
-
-      
-   
-
