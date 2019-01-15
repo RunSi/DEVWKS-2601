@@ -28,6 +28,18 @@ import logging
 
 from pprint import pprint
 
+def nve_parse():
+    output = uut.device.execute('show nve vni')
+
+    # Create list of Header names of the table from show nve nvi - must match exactly to that which is output on cli
+    header = ['Interface', 'VNI', 'Multicast-group', 'VNI state', 'Mode', 'BD', 'cfg', 'vrf']
+
+    # Use Parsergen to parse the output and create structured output (dictionary of operational stats)
+    result = parsergen.oper_fill_tabular(device_output=output, device_os='iosxe', header_fields=header, index=[0])
+
+    intlist=[x for x in result.entries]
+
+    return intlist
 
 testbed = Genie.init('sandbox_iosxe.yaml')
 uut = testbed.devices.iosxe1
@@ -60,14 +72,20 @@ regex_tags = {
 parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
 
 attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
-pgfill = parsergen.oper_fill (
-    uut,
-    ('show_int', ['nve1']),
-    attrValPairsToParse,
-    refresh_cache=True,
-    regex_tag_fill_pattern='nve\.intf')
-pgfill.parse()
-pprint(parsergen.ext_dictio)
+
+interfaces = nve_parse()
+
+finaldict={}
+for int in interfaces:
+    pgfill = parsergen.oper_fill (
+        uut,
+        ('show_int', [int]),
+        attrValPairsToParse,
+        refresh_cache=True,
+        regex_tag_fill_pattern='nve\.intf')
+    pgfill.parse()
+    finaldict[int]=parsergen.ext_dictio[uut.device.name]
+pprint(finaldict)
 
 
 uut.disconnect()

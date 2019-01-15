@@ -115,7 +115,7 @@
                   </native>
                </config>
 
-    - name: Configure VXLAN
+    - name: Configure Bridge Domain
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -137,16 +137,30 @@
                       </member>
                     </brd-id>
                   </bridge-domain>
+                </native>
+              </config>
+
+    - name: Configure VXLAN
+      netconf_config:
+        with_items: "{{nves}}"
+        host: "{{mgmt_ip}}"
+        port: "{{netconf_port}}"
+        hostkey_verify: false
+        username: "{{username}}"
+        password: "{{password}}"
+        xml: |
+              <config>
+                <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                    <interface>
                     <nve>
-                      <name>1</name>
+                      <name></name>
                       <source-interface>
-                        <Loopback>10</Loopback>
+                        <Loopback>{{item.interface_id}}</Loopback>
                       </source-interface>
                       <member>
                         <vni>
-                          <vni-range>6001</vni-range>
-                          <ingress-replication>{{ingress_rep}}</ingress-replication>
+                          <vni-range>{{item.vni}}</vni-range>
+                          <ingress-replication>{{item.ingress_rep}}</ingress-replication>
                         </vni>
                       </member>
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="create"/>

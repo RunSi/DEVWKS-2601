@@ -33,6 +33,14 @@ loopbacks:
     ip_address: 172.16.30.1
     subnet_mask: 255.255.255.0
 
+nves:
+  - interface_id: nve1
+    loopback: 10
+    vni: 6010
+    ingress_rep: 172.16.40.1
+
+
+
 networks:
   - description: Advertise in BGP
     network: 172.16.10.0
