@@ -115,7 +115,9 @@
                   </native>
                </config>
 
-    - name: Configure Bridge Domain
+
+    - name: Configure VXLAN
+      with_items: "{{bd_service_instance}}"
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -127,40 +129,26 @@
                 <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                   <bridge-domain>
                     <brd-id xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bridge-domain">
-                      <bridge-domain-id>1</bridge-domain-id>
+                      <bridge-domain-id>{{item.bdid}}</bridge-domain-id>
                       <member>
-                        <vni>6001</vni>
+                        <vni>{{item.vni}}</vni>
                         <member-interface>
                           <interface>Gigabitethernet3</interface>
-                          <service-instance>1</service-instance>
+                          <service-instance>{{item.inst}}</service-instance>
                         </member-interface>
                       </member>
                     </brd-id>
                   </bridge-domain>
-                </native>
-              </config>
-
-    - name: Configure VXLAN
-      netconf_config:
-        with_items: "{{nves}}"
-        host: "{{mgmt_ip}}"
-        port: "{{netconf_port}}"
-        hostkey_verify: false
-        username: "{{username}}"
-        password: "{{password}}"
-        xml: |
-              <config>
-                <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                    <interface>
                     <nve>
-                      <name></name>
+                      <name>{{item.nveint}}</name>
                       <source-interface>
-                        <Loopback>{{item.interface_id}}</Loopback>
+                        <Loopback>{{item.loop}}</Loopback>
                       </source-interface>
                       <member>
                         <vni>
                           <vni-range>{{item.vni}}</vni-range>
-                          <ingress-replication>{{item.ingress_rep}}</ingress-replication>
+                          <ingress-replication>{{item.ingrep}}</ingress-replication>
                         </vni>
                       </member>
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="create"/>
@@ -170,10 +158,12 @@
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove"/>
                       <service xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ethernet">
                         <instance>
-                          <id>1</id>
+                          <id>{{item.inst}}</id>
                           <ethernet/>
                           <encapsulation>
-                            <untagged/>
+                            <dot1q>
+                              <id>{{item.dot1q}}</id>
+                            </dot1q>
                           </encapsulation>
                         </instance>
                       </service>
@@ -183,6 +173,7 @@
               </config>
 
     - name: Bring VXLAN NVE up
+      with_items: "{{bd_service_instance}}"
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -194,7 +185,7 @@
                 <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                   <interface>
                     <nve>
-                      <name>1</name>
+                      <name>{{item.nveint}}</name>
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
                     </nve>
                   </interface>
