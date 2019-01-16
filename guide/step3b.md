@@ -23,63 +23,6 @@ Now try and find other parameters from the interface object to learn and display
 
 ---
 
-**Verify State**
-
-A very useful feature of the Ops object is to verify the condition of a particular state.  
-
-The code below creates a function that checks the current oper_status of GigabitEthernet3.  
-
-If the oper_status is up, then the verification is successful it will print that Gig3 is up and return to the main body of the
-code.  
-
-If the oper_status is down it will learn the interface state 3 more times with a sleep interval of 3 seconds, if after 3 attempts
-the interface is still down then an Exception will be raised.
-
-Enter the code as is below to your iPython session
-
-````python
-interface = Interface(device=uut)
-
-def verify_interface_status(obj):
-    if obj.info['GigabitEthernet3'].get('oper_status', None) and\
-       obj.info['GigabitEthernet3']['oper_status'] == 'up':
-       print('\n\nGig 3 is up')
-       return
-    raise Exception('Gig 3 is currently down')
-    
-interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
-
-````
- 
-
-
-
-Now rerun the above code and observe the results
-
-Now use the Genie Conf class to reconfigure the device.
-
-```python
-from genie.conf.base import Interface as Intf_conf
-
-interface = Intf_conf(device=uut, name='GigabitEthernet3') 
-
-interface.shutdown = True 
-
-```
-
-Review the configuration to check it is correct
-
-```python
-print(interface.build_config(apply=False)) 
-```
-
-Now apply configuration to the device
-
-```python
-interface.build_config() 
-```
-
----
 
 **Compare State**
 
@@ -141,89 +84,16 @@ Disconnect from the device
 ```python
 uut.disconnect()
 ```
-
-
 ---
 
-### _Optional Extra_
-
-**Verify State**
-
-A very useful feature of the Ops object is to verify the condition of a particular state.  
-
-The code below creates a function that checks the current oper_status of GigabitEthernet3.  
-
-If the oper_status is up, then the verification is successful it will print that Gig3 is up and return to the main body of the
-code.  
-
-If the oper_status is down it will learn the interface state 3 more times with a sleep interval of 3 seconds, if after 3 attempts
-the interface is still down then an Exception will be raised.
-
-Enter the code as is below to your iPython session
-
-````python
-interface = Interface(device=uut)
-
-def verify_interface_status(obj):
-    if obj.info['GigabitEthernet3'].get('oper_status', None) and\
-       obj.info['GigabitEthernet3']['oper_status'] == 'up':
-       print('\n\nGig 3 is up')
-       return
-    raise Exception('Gig 3 is currently down')
-    
-interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
-
-````
- 
-
-
-
-Now rerun the above code and observe the results
-
-Now use the Genie Conf class to reconfigure the device.
-
-```python
-interface_cfg.shutdown = True 
-print(interface_cfg.build_config(apply=False)) 
-
-```
-
-Review the configuration to check it is correct
-
-```python
-print(interface_cfg.build_config(apply=False)) 
-```
-
-Now apply configuration to the device
-
-```python
-interface_cfg.build_config() 
-```
-
-Run **Verify** code again
-
-````python
-interface = Interface(device=uut)
-
-def verify_interface_status(obj):
-    if obj.info['GigabitEthernet3'].get('oper_status', None) and\
-       obj.info['GigabitEthernet3']['oper_status'] == 'up':
-       print('\n\nGig 3 is up')
-       return
-    raise Exception('Gig 3 is currently down')
-    
-interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
-
-````
-
-
----
 
 **Conclusion**
 
 As demonstrated the Ops library is an extremely useful set of tools for retrieving state data from your devices.  The
 preceding exercise only explored the Ops _Model_ for IOSXE Interfaces.  There are hundreds of further models at your disposal
 that support a vast range of features across IOSXE, IOSXR and NXOS.  To view the available models please go to [Model Wiki](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/genie_libs/#/models)
+
+
 
 
 ### _Optional Extra_
