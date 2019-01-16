@@ -1,0 +1,210 @@
+##############################################################
+# Sample: Ansible Playbook for one IOSXE router as part of
+#         pyATS lab when used in conjunction with local
+#         Vagrant Machine. The file was created based upon the
+#         original IOS XE programmabililty file by
+#         Hank Preston <hapresto@cisco.com>
+# Author: Simon Hart <sihart@cisco.com>
+#
+# ansible_provision.yaml
+# Will configure the router via the Ansible netconf plugin:
+# The ansible playbook will perform the following
+# - Provision an IOS XE Device through Ansible
+# - Enable NETCONF/RESTCONF APIs
+# - Add ip addressing to Gig2
+# - Create Loopbacks on each router
+# - Enable BGP and start peering between two the two routers
+# - Enable Vxlan and create NVE interfaces for Vxlan peering
+##############################################################
+---
+- name: Provision IOS XE Devices
+  hosts: vagrant
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Pause to complete boot
+      pause:
+        seconds: 5
+
+    - name: Configure NETCONF and RESTCONF
+      ios_config:
+        provider:
+          host: "{{mgmt_ip}}"
+          port: "{{ssh_port}}"
+          username: "{{username}}"
+          password: "{{password}}"
+        lines:
+          - netconf-yang
+          - netconf-yang cisco-odm polling-enable
+          - restconf
+          - ip http server
+          - ip http secure-server
+
+    - name: Configure System Settings
+      ios_system:
+        provider:
+          host: "{{mgmt_ip}}"
+          port: "{{ssh_port}}"
+          username: "{{username}}"
+          password: "{{password}}"
+        hostname: "iosxe1"
+
+    - name: Pause for NETCONF/RESTCONF to start
+      pause:
+        seconds: 45
+
+    - name: Configure Interfaces
+      with_items: "{{interfaces}}"
+      netconf_config:
+        host: "{{mgmt_ip}}"
+        port: "{{netconf_port}}"
+        hostkey_verify: false
+        username: "{{username}}"
+        password: "{{password}}"
+        xml: |
+            <config>
+              <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+                <interface>
+                  <name>{{item.interface_type}}{{item.interface_id}}</name>
+                  <description>{{item.description}}</description>
+                  <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+                  <enabled>true</enabled>
+                  <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+                    <address>
+                      <ip>{{item.ip_address}}</ip>
+                      <netmask>{{item.subnet_mask}}</netmask>
+                    </address>
+                  </ipv4>
+                </interface>
+              </interfaces>
+            </config>
+
+
+    - name: Configure Loopbacks
+      with_items: "{{loopbacks}}"
+      netconf_config:
+        host: "{{mgmt_ip}}"
+        port: "{{netconf_port}}"
+        hostkey_verify: false
+        username: "{{username}}"
+        password: "{{password}}"
+        xml: |
+            <config>
+              <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+               <interface>
+                <name>{{item.interface_id}}</name>
+                  <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:softwareLoopback</type>
+                  <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+                    <address>
+                      <ip>{{item.ip_address}}</ip>
+                      <netmask>{{item.subnet_mask}}</netmask>
+                    </address>
+                   </ipv4>
+               </interface>
+              </interfaces>
+            </config>
+
+    - name: Configure BGP
+      with_items: "{{networks}}"
+      netconf_config:
+        host: "{{mgmt_ip}}"
+        port: "{{netconf_port}}"
+        hostkey_verify: false
+        username: "{{username}}"
+        password: "{{password}}"
+        xml: |
+             <config>
+               <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                    <router>
+                      <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp">
+                        <id>{{as_number}}</id>
+                        <neighbor>
+                          <id>{{neighbor}}</id>
+                          <remote-as>{{remote_as}}</remote-as>
+                        </neighbor>
+                        <network>
+                          <number>{{item.network}}</number>
+                          <mask>255.255.255.0</mask>
+                          </network>
+                      </bgp>
+                    </router>
+                  </native>
+               </config>
+
+
+    - name: Configure VXLAN
+      with_items: "{{bd_service_instance}}"
+      netconf_config:
+        host: "{{mgmt_ip}}"
+        port: "{{netconf_port}}"
+        hostkey_verify: false
+        username: "{{username}}"
+        password: "{{password}}"
+        xml: |
+              <config>
+                <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                  <bridge-domain>
+                    <brd-id xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bridge-domain">
+                      <bridge-domain-id>{{item.bdid}}</bridge-domain-id>
+                      <member>
+                        <vni>{{item.vni}}</vni>
+                        <member-interface>
+                          <interface>Gigabitethernet3</interface>
+                          <service-instance>{{item.inst}}</service-instance>
+                        </member-interface>
+                      </member>
+                    </brd-id>
+                  </bridge-domain>
+                   <interface>
+                    <nve>
+                      <name>{{item.nveint}}</name>
+                      <source-interface>
+                        <Loopback>{{item.loop}}</Loopback>
+                      </source-interface>
+                      <member>
+                        <vni>
+                          <vni-range>{{item.vni}}</vni-range>
+                          <ingress-replication>{{item.ingrep}}</ingress-replication>
+                        </vni>
+                      </member>
+                      <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="create"/>
+                    </nve>
+                    <GigabitEthernet>
+                      <name>3</name>
+                      <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove"/>
+                      <service xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ethernet">
+                        <instance>
+                          <id>{{item.inst}}</id>
+                          <ethernet/>
+                          <encapsulation>
+                            <dot1q>
+                              <id>{{item.dot1q}}</id>
+                            </dot1q>
+                          </encapsulation>
+                        </instance>
+                      </service>
+                    </GigabitEthernet>
+                  </interface>
+                </native>
+              </config>
+
+    - name: Bring VXLAN NVE up
+      with_items: "{{bd_service_instance}}"
+      netconf_config:
+        host: "{{mgmt_ip}}"
+        port: "{{netconf_port}}"
+        hostkey_verify: false
+        username: "{{username}}"
+        password: "{{password}}"
+        xml: |
+              <config>
+                <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                  <interface>
+                    <nve>
+                      <name>{{item.nveint}}</name>
+                      <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
+                    </nve>
+                  </interface>
+                </native>
+              </config>

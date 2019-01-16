@@ -40,7 +40,7 @@ bd_service_instance:
     nveint: 1
     loop: 10
     vni: 6010
-    ingress_rep: 172.16.40.1
+    ingrep: 172.16.40.1
     dot1q: 10
   - interface_id: 2
     bdid: 2
@@ -48,7 +48,7 @@ bd_service_instance:
     nveint: 2
     loop: 20
     vni: 6020
-    ingress_rep: 172.16.40.1
+    ingrep: 172.16.50.1
     dot1q: 20
   - interface_id: 3
     bdid: 3
@@ -57,7 +57,7 @@ bd_service_instance:
     loop: 30
     vni: 6030
     dot1q: 30
-    ingress_rep: 172.16.40.1
+    ingrep: 172.16.60.1
 
 
 networks:
