@@ -58,7 +58,7 @@ class Vxlan(Base):
 
         # Capture output from ShowNveIntf parser
         src = '[(?P<nveint>.*)]'
-        dest = 'info[nve1]'
+        dest = 'info[(?P<nveint>.*)]'
         req_keys = ['[nve.intf.if_encap]','[nve.intf.primary]','[nve.intf.source_intf]']
         for key in req_keys:
             key_strip = key[10:]

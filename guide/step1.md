@@ -1,17 +1,14 @@
 # Getting Started
 
-### Sandbox Guide
 
 In order to follow this lab please clone the DEVWKS-2601 repository from github
 
 ```bash
-$ git clone https://github.com/RunSi/DEVWKS-2601.git
+git clone https://github.com/RunSi/DEVWKS-2601.git
 
-$ cd DEVWKS-2601
+cd DEVWKS-2601
 
-$ git checkout sandbox
-
-$ source ./lab_setup.sh
+source ./lab_setup.sh
 
 ```
 

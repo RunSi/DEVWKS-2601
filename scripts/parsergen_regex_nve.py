@@ -41,7 +41,7 @@ def nve_parse():
 
     return intlist
 
-testbed = Genie.init('sandbox_iosxe.yaml')
+testbed = Genie.init('vagrant_single_ios.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
 
