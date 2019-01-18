@@ -115,10 +115,13 @@ of the topology object by issuing the following commands
 ```python
 
 testbed.devices 
-
-testbed.name 
-
+```
+```python
 testbed.interfaces
+```
+
+```python
+testbed.name 
 
 ```
 

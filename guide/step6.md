@@ -51,11 +51,6 @@ but this does not have to be the case
 * Finally the make() is invoked to finalise the new object structure.
 
 ```python
-from genie.ops.base import Base
-
-#
-# Import Show nve neighbor and Show nve peers parsers
-from iosxevxlan import ShowNveVni,ShowNvePeers,ShowNveIntf
 
 #Create the Vxlan Ops Class
 class Vxlan(Base):
