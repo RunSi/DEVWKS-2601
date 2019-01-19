@@ -1,69 +1,5 @@
 ### Genie Ops continued
 
-**Partial retrieval of Ops data**
-
-Rather than retrieving the entire state you can choose to only save the attributes you require for the interface.  
-For example we only wish to retrieve the Mac Addresses of the interfaces.  To achieve this
-
-```python
-interface = Interface(device=uut, attributes=['info[(.*)][mac_address]'])
-```
-
-Now 'relearn' the interface object and display the output
-
-```python
-interface.learn()
-
-pprint(interface.info)
-
-```
-
-Now try and find other parameters from the interface object to learn and display (for example, 'mtu', 'bandwidth')
-
-
----
-
-**Verify State**
-
-A very useful feature of the Ops object is to verify the condition of a particular state.  
-
-The code below creates a function that checks the current oper_status of GigabitEthernet3.  
-
-If the oper_status is up, then the verification is successful it will print that Gig3 is up and return to the main body of the
-code.  
-
-If the oper_status is down it will learn the interface state 3 more times with a sleep interval of 3 seconds, if after 3 attempts
-the interface is still down then an Exception will be raised.
-
-Enter the code as is below to your iPython session
-
-````python
-interface = Interface(device=uut)
-
-def verify_interface_status(obj):
-    if obj.info['GigabitEthernet3']['oper_status'] == 'up':
-       print('\n\nGig 3 is up')
-       return
-    raise Exception('Gig 3 is currently down')
-    
-interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
-
-````
- 
-If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!  
-
-If the lab you are using is a local vagrant machine - ssh -p 3122 vagrant@127.0.0.1 vagrant
-  
-
-
-```bash
-
-conf t
-interface GigabitEthernet3
-shutdown
-```
-Now rerun the above code and observe the results
-
 ---
 
 **Compare State**
@@ -124,6 +60,26 @@ preceding exercise only explored the Ops _Model_ for IOSXE Interfaces.  There ar
 that support a vast range of features across IOSXE, IOSXR and NXOS.  To view the available models please go to [Model Wiki](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/genie_libs/#/models)
 
 ### _Optional Extra ###
+
+**Partial retrieval of Ops data**
+
+Rather than retrieving the entire state you can choose to only save the attributes you require for the interface.  
+For example we only wish to retrieve the Mac Addresses of the interfaces.  To achieve this
+
+```python
+interface = Interface(device=uut, attributes=['info[(.*)][mac_address]'])
+```
+
+Now 'relearn' the interface object and display the output
+
+```python
+interface.learn()
+
+pprint(interface.info)
+
+```
+
+Now try and find other parameters from the interface object to learn and display (for example, 'mtu', 'bandwidth')
 
 **Verify State**
 
