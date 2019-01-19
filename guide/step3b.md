@@ -111,6 +111,9 @@ interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
 Now use the Genie Conf class to reconfigure the device and verify config.
 
 ```python
+from genie.conf.base import Interface as Intf_conf
+
+interface_cfg = Intf_conf(device=uut, name='GigabitEthernet3')
 interface_cfg.shutdown = True 
 print(interface_cfg.build_config(apply=False)) 
 ```
