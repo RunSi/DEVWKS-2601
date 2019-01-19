@@ -10,4 +10,5 @@ interface_cfg = Intf_conf(device=uut, name='NVE1')
 interface_cfg.shutdown = True
 interface_cfg.build_config()
 
+
 uut.disconnect()
