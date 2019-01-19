@@ -1,26 +1,5 @@
 ### Genie Ops continued
 
-**Partial retrieval of Ops data**
-
-Rather than retrieving the entire state you can choose to only save the attributes you require for the interface.  
-For example we only wish to retrieve the Mac Addresses of the interfaces.  To achieve this
-
-```python
-interface = Interface(device=uut, attributes=['info[(.*)][mac_address]'])
-```
-
-Now 'relearn' the interface object and display the output
-
-```python
-interface.learn()
-
-pprint(interface.info)
-
-```
-
-Now try and find other parameters from the interface object to learn and display (for example, 'mtu', 'bandwidth')
-
-
 ---
 
 
@@ -96,8 +75,28 @@ that support a vast range of features across IOSXE, IOSXR and NXOS.  To view the
 
 
 
-### _Optional Extra_
+### _Optional Extras_
 
+
+**Partial retrieval of Ops data**
+
+Rather than retrieving the entire state you can choose to only save the attributes you require for the interface.  
+For example we only wish to retrieve the Mac Addresses of the interfaces.  To achieve this
+
+```python
+interface = Interface(device=uut, attributes=['info[(.*)][mac_address]'])
+```
+
+Now 'relearn' the interface object and display the output
+
+```python
+interface.learn()
+
+pprint(interface.info)
+
+```
+
+Now try and find other parameters from the interface object to learn and display (for example, 'mtu', 'bandwidth')
 **Verify State**
 
 A very useful feature of the Ops object is to verify the condition of a particular state.  
