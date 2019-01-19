@@ -1,4 +1,3 @@
-# Python
 """
 Copyright (c) 2019 Cisco and/or its affiliates.
 
@@ -146,8 +145,21 @@ class ShowNveIntf(ShowNveIntfSchema):
 # class ShowNveVni():
     """ Parser for nve vni """
 
+    def _nve_parse(self):
+        output = self.device.execute('show nve vni')
+
+        # Create list of Header names of the table from show nve nvi - must match exactly to that which is output on cli
+        header = ['Interface', 'VNI', 'Multicast-group', 'VNI state', 'Mode', 'BD', 'cfg', 'vrf']
+
+        # Use Parsergen to parse the output and create structured output (dictionary of operational stats)
+        result = parsergen.oper_fill_tabular(device_output=output, device_os='iosxe', header_fields=header, index=[0])
+
+        intlist=[x for x in result.entries]
+
+        return intlist
+
     def cli(self):
-        #excute command to get output
+        # excute command to get output
         show_cmds = {
             'iosxe': {
                 'show_int': "show nve interface {}",
@@ -171,16 +183,22 @@ class ShowNveIntf(ShowNveIntfSchema):
                       'nve.intf.primary', 'nve.intf.vrf']
         }
 
-
         parsergen.extend(show_cmds=show_cmds, regex_ext=regex, regex_tags=regex_tags)
 
-        attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
-        pgfill = parsergen.oper_fill(
-            self.device,
-            ('show_int', ['nve1']),
-            attrValPairsToParse,
-            refresh_cache=True,
-            regex_tag_fill_pattern='nve\.intf')
-        pgfill.parse()
+        interfaces = self._nve_parse()
 
-        return parsergen.ext_dictio
+        finaldict = {}
+        attrValPairsToParse = [('nve.intf.if_encap', 'Vxlan')]
+        for int in interfaces:
+            pgfill = parsergen.oper_fill(
+                self.device,
+                ('show_int', [int]),
+                attrValPairsToParse,
+                refresh_cache=True,
+                regex_tag_fill_pattern='nve\.intf')
+            pgfill.parse()
+            finaldict[int] = parsergen.ext_dictio[self.device.name]
+
+        #
+        #return parsergen.ext_dictio[self.device.name]
+        return finaldict
