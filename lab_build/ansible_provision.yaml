@@ -48,14 +48,11 @@
           port: "{{ssh_port}}"
           username: "{{username}}"
           password: "{{password}}"
-        hostname: "{{ inventory_hostname }}"
-
+        hostname: "iosxe1"
 
     - name: Pause for NETCONF/RESTCONF to start
       pause:
         seconds: 45
-
-
 
     - name: Configure Interfaces
       with_items: "{{interfaces}}"
@@ -125,7 +122,7 @@
                         <neighbor>
                           <id>{{neighbor}}</id>
                           <remote-as>{{remote_as}}</remote-as>
-                        </neighbor> 
+                        </neighbor>
                         <network>
                           <number>{{item.network}}</number>
                           <mask>255.255.255.0</mask>
@@ -135,7 +132,9 @@
                   </native>
                </config>
 
+
     - name: Configure VXLAN
+      with_items: "{{bd_service_instance}}"
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -147,26 +146,26 @@
                 <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                   <bridge-domain>
                     <brd-id xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bridge-domain">
-                      <bridge-domain-id>1</bridge-domain-id>
+                      <bridge-domain-id>{{item.bdid}}</bridge-domain-id>
                       <member>
-                        <vni>6001</vni>
+                        <vni>{{item.vni}}</vni>
                         <member-interface>
                           <interface>Gigabitethernet3</interface>
-                          <service-instance>1</service-instance>
+                          <service-instance>{{item.inst}}</service-instance>
                         </member-interface>
                       </member>
                     </brd-id>
                   </bridge-domain>
                    <interface>
                     <nve>
-                      <name>1</name>
+                      <name>{{item.nveint}}</name>
                       <source-interface>
-                        <Loopback>10</Loopback>
+                        <Loopback>{{item.loop}}</Loopback>
                       </source-interface>
                       <member>
                         <vni>
-                          <vni-range>6001</vni-range>
-                          <ingress-replication>{{ingress_rep}}</ingress-replication>
+                          <vni-range>{{item.vni}}</vni-range>
+                          <ingress-replication>{{item.ingrep}}</ingress-replication>
                         </vni>
                       </member>
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="create"/>
@@ -176,10 +175,12 @@
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove"/>
                       <service xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ethernet">
                         <instance>
-                          <id>1</id>
+                          <id>{{item.inst}}</id>
                           <ethernet/>
                           <encapsulation>
-                            <untagged/>
+                            <dot1q>
+                              <id>{{item.dot1q}}</id>
+                            </dot1q>
                           </encapsulation>
                         </instance>
                       </service>
@@ -189,6 +190,7 @@
               </config>
 
     - name: Bring VXLAN NVE up
+      with_items: "{{bd_service_instance}}"
       netconf_config:
         host: "{{mgmt_ip}}"
         port: "{{netconf_port}}"
@@ -200,13 +202,9 @@
                 <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                   <interface>
                     <nve>
-                      <name>1</name>
+                      <name>{{item.nveint}}</name>
                       <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
                     </nve>
                   </interface>
                 </native>
               </config>
-
-      
-   
-

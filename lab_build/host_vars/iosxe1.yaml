@@ -33,6 +33,33 @@ loopbacks:
     ip_address: 172.16.30.1
     subnet_mask: 255.255.255.0
 
+bd_service_instance:
+  - interface_id: 1
+    bdid: 1
+    inst: 1
+    nveint: 1
+    loop: 10
+    vni: 6010
+    ingrep: 172.16.40.1
+    dot1q: 10
+  - interface_id: 2
+    bdid: 2
+    inst: 2
+    nveint: 2
+    loop: 20
+    vni: 6020
+    ingrep: 172.16.50.1
+    dot1q: 20
+  - interface_id: 3
+    bdid: 3
+    inst: 3
+    nveint: 3
+    loop: 30
+    vni: 6030
+    dot1q: 30
+    ingrep: 172.16.60.1
+
+
 networks:
   - description: Advertise in BGP
     network: 172.16.10.0

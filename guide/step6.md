@@ -37,7 +37,7 @@ Enter the code below into your ipython session
 
 ```python
 from genie.ops.base import Base
-from iosxevxlan import ShowNveVni,ShowNvePeers
+from iosxevxlan import ShowNveVni,ShowNvePeers, ShowNveIntf
 
 ```
 
@@ -51,6 +51,8 @@ but this does not have to be the case
 * Finally the make() is invoked to finalise the new object structure.
 
 ```python
+
+#Create the Vxlan Ops Class
 class Vxlan(Base):
 
     def learn(self, custom=None):
@@ -66,7 +68,7 @@ class Vxlan(Base):
                           dest=dest + '[{}]'.format(key))
 
 
-        # Capture ouput from ShowNvePeers parser
+        # Capture output from ShowNvePeers parser
         src = '[(?P<nvename>.*)]'
         dest = 'info[(?P<nvename>.*)]'
         req_keys = ['[Peer-IP]','[Router-RMAC]','[Type]','[state]']
@@ -77,7 +79,7 @@ class Vxlan(Base):
 
         # Capture output from ShowNveIntf parser
         src = '[(?P<nveint>.*)]'
-        dest = 'info[nve1]'
+        dest = 'info[(?P<nveint>.*)]'
         req_keys = ['[nve.intf.if_encap]','[nve.intf.primary]','[nve.intf.source_intf]']
         for key in req_keys:
             key_strip = key[10:]

@@ -17,26 +17,16 @@ cd ~/DEVWKS-2601/scripts
 Now run the following command in your terminal session
 
 ```bash
-easypy vxlancheckjob.py -html_logs -no_archive -testbed_file vagrant_single_ios.yaml 
+easypy vxlancheckjob.py -html_logs . -no_archive -testbed_file vagrant_single_ios.yaml 
 ```
 
-Once completed review the report file generated
+Open up the Task.html file in the runinfo directory
 
 ```bash
-less runinfo/vxlancheckjob.xxxxxxxxxxxxxxx/vxlancheckjob.report
+open TaskLog.html
 ```
 
-And then open up the Task.html file in the runinfo directory
-
-```bash
-open runinfo/vxlancheckjob.xxxxxxxxxxxxxxxx/TaskLog.html
-```
-
-Once you have reviewed the web page and the report enter the following commands
-
-```bash
-rm -rf runinfo
-```
+---
 
 
 From your terminal ssh into your device
@@ -79,4 +69,4 @@ $ ./lab_cleanup.sh
 ### Be sure to attend DEVWKS-2595 Stateful Network Validation using pyATS + GENIE
 
 
-[Beginning](../README.md)   [Back](./step6.md)  [Next](./README.md)
+[Beginning](../README.md)   [Back](./step7.md)  [Next](./step8.md)
