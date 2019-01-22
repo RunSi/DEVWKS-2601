@@ -30,7 +30,7 @@ The objective of this lab is to:
 * Leverage the Genie Ops libraries for retrieving operational data
 * Explore the models and parsers leveraged by Genie Ops
 * To become familiar with the Genie Parsergen library
-* To start the journey on creating your own simple or even libraries
+* To start the journey on creating your own libraries
 
 ## Pre-requisites
 
