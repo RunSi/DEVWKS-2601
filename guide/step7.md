@@ -69,4 +69,4 @@ $ ./lab_cleanup.sh
 ### Be sure to attend DEVWKS-2595 Stateful Network Validation using pyATS + GENIE
 
 
-[Beginning](../README.md)   [Back](./step7.md)  [Next](./step8.md)
+[Beginning](../README.md)   [Back](./step6.md)  [Next](./step1.md)

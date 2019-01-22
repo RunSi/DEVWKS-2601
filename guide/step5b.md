@@ -12,7 +12,7 @@ Initiate an iPython interactive session and intialise the testbed
 
 $ ipython
 
-import pprint
+from pprint import pprint
 from genie.conf import Genie
 from genie import parsergen
 
@@ -87,7 +87,7 @@ Now call the parse method for the object pgfill and print
 ```python
 pgfill.parse()
 
-print(parsergen.ext_dictio)
+pprint(parsergen.ext_dictio)
 
 ```
 

@@ -16,7 +16,6 @@ Initiate an iPython interactive session and intialise the testbed
 
 $ ipython
 
-import pprint
 from genie.conf import Genie
 testbed = Genie.init('vagrant_single_ios.yaml')
 uut = testbed.devices.iosxe1
@@ -95,10 +94,14 @@ Finally create a new ops object called myvxlan and learn from the device
 
 ```python
 myvxlan = Vxlan(device=uut)
-
+```
+```python
 myvxlan.learn()
-
+```
+```python
 myvxlan.info
+```
+
 
 ```
 

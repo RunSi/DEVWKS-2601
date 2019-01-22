@@ -45,7 +45,7 @@ $ ipython
 As in previous sections initiate the testbed topology and import the relevant libraries for this exercise
 
 ```python
-import pprint
+from pprint import pprint
 from genie.conf import Genie
 from genie import parsergen
 
@@ -77,7 +77,7 @@ result = parsergen.oper_fill_tabular(device_output=output, device_os='iosxe', he
 Now print the structured data returned
 
 ```python
-pprint.pprint(result.entries)
+pprint(result.entries)
 ```
 
 Determine the type of the result object entries attribute

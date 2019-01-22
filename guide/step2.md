@@ -113,14 +113,15 @@ The topology object that has been created is called testbed.  Now look at some o
 of the topology object by issuing the following commands
 
 ```python
-
 testbed.devices 
-
-testbed.name 
-
-testbed.interfaces
-
 ```
+```python
+testbed.name
+```
+```python
+testbed.interfaces
+```
+
 
 The topology file has numerous attributes, objects and methods, to view these then in the iPython session type
 **testbed.** and press tab.  Alternatively you can issue the following command within iPython
