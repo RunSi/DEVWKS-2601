@@ -40,7 +40,7 @@ Users of this lab should have some familiarity with Python and basic concepts of
 object-oriented programming.
 
 The CSR1000v IOS-XE [Vagrant Boxes](https://www.vagrantup.com/docs/boxes.html) must be available on your system.  
-Instructions for creating the CSR1000v Boxes can be found at:-  [Box Building](https://github.com/hpreston/vagrant_net_prog/tree/master/box_building)  
+Instructions for creating the CSR1000v Boxes can be found at [Box Building](https://github.com/hpreston/vagrant_net_prog/tree/master/box_building)  
 CSR1000v Boxes must be named - _iosxe/16.08.01_ - Alternatively modify [Vagrantfile](/lab_build/Vagrantfile) to point to your local CSR1000v Box.
 
 
