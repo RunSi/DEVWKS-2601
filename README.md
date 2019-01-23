@@ -1,4 +1,6 @@
-# Devnet Workshop (DEVWKS-2601)- pyATS Genie Ops and Parsers
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/RunSi/DEVWKS-2601)
+
+# DevNet Workshop (DEVWKS-2601)- pyATS Genie Ops and Parsers
 ---
 
 ### Table of Contents
@@ -35,11 +37,11 @@ The objective of this lab is to:
 ## Pre-requisites
 
 Users of this lab should have some familiarity with Python and basic concepts of 
-object oriented programming.
+object-oriented programming.
 
-The CSR1000v IOSXE Boxes must be available on your system.  
-Instructions for creating the CSR1000v Boxes can be found at:-  [Box Building](https://github.com/hpreston/vagrant_net_prog/tree/master/box_building)  
-Vagrant VM Boxes must be named - _iosxe/16.08.01_ - Alternatively modify [Vagrantfile](/lab_build/Vagrantfile) to point to your local CSR1000v box
+The CSR1000v IOS-XE [Vagrant Boxes](https://www.vagrantup.com/docs/boxes.html) must be available on your system.  
+Instructions for creating the CSR1000v Boxes can be found at [Box Building](https://github.com/hpreston/vagrant_net_prog/tree/master/box_building)  
+CSR1000v Boxes must be named - _iosxe/16.08.01_ - Alternatively modify [Vagrantfile](/lab_build/Vagrantfile) to point to your local CSR1000v Box.
 
 
 ### To start please proceed to [Step1](/guide/step1.md)
@@ -58,8 +60,8 @@ Smart people responsible for the creation and maintenance of this project:
 The code snippets and lab could not have been created without the excellent support and guidance from the Cisco ASG Genie Development team, 
 2018 Pioneer Award Winners.  
 In particular [Siming Yuan](https://github.com/siming85), [Jean-Benoit Aubin](https://github.com/jeaubin) and [Karim Mohamed](https://github.com/karmoham).  Could not have done without 
-support of [Kevin Corbin](https://github.com/kecorbin) either, and lastly by now means least [Hank Preston](https://github.com/hpreston) for the 
-Box Building and Vagrants plagiarism.
+support of [Kevin Corbin](https://github.com/kecorbin) either, and lastly, but by no means least, [Hank Preston](https://github.com/hpreston) for the 
+Box Building and Vagrant plagiarism.
 
 Further information on pyATS can be found on [DevNet](https://developer.cisco.com/site/pyats/)
 
