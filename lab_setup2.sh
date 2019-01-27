@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir -p ~/workspace/devnet-2595
-cd ~/workspace/devnet-2595
+mkdir -p ~/workspace/DEVWKS-2601
+cd ~/workspace/DEVWKS-2601
 
 # create python virtual environment
 $(pyenv root)/versions/3.6.7/bin/pyvenv .
