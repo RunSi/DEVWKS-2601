@@ -10,5 +10,5 @@ $(pyenv root)/versions/3.6.7/bin/pyvenv .
 source bin/activate
 pip install --upgrade pip setuptools
 
-pip install -r requirements.txt
+pip install -r ~/requirements.txt
 git clone https://github.com/RunSi/DEVWKS-2601
