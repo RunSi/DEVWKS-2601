@@ -3,9 +3,8 @@
 In order to follow this lab please clone the DEVWKS-2601 repository from github
 
 ```bash
-$ git clone https://github.com/RunSi/DEVWKS-2601.git
 
-$ cd DEVWKS-2601
+$ cd workspace/DEVWKS-2601/DEVWKS-2601/
 
 $ source ./lab_setup.sh
 ```
