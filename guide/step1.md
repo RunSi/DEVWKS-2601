@@ -4,7 +4,7 @@ In order to follow this lab please clone the DEVWKS-2601 repository from github
 
 ```bash
 
-$ cd workspace/DEVWKS-2601/DEVWKS-2601/
+$ cd ~/workspace/DEVWKS-2601/DEVWKS-2601/
 
 $ source ./lab_setup.sh
 ```
