@@ -97,15 +97,17 @@ The testbed object will have a number of attributes, objects and methods, a set 
 Run an iPython interactive shell:-
 
 ```bash
-$iPython
+iPython
 ```
 
 Import the Genie Class from genie.conf and initiate the testbed file
 
 ```python
+
+from pprint import pprint
 from genie.conf import Genie
 
-testbed = Genie.init('vagrant_single_ios.yaml')
+testbed = Genie.init('mocked_first.yaml')
 
 ```
 
@@ -138,7 +140,7 @@ dir(testbed.devices)
 ```
 
 You will see that from issuing this command that testbed.devices has number of attributes/objects/methods, of note are
-_iosxe1_ and _iosxe2_
+_iosxe1_
 
 
 Once again type within iPython (or tab completion)

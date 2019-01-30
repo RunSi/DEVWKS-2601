@@ -4,24 +4,7 @@ Rather than explicitly defining regular expressions for each item to retrieve, a
 we can use a special CLI command markup format that will automatically generate the regular
 expressions.
 
-If you have an iPython session running. Close and restart iPython
-
-Initiate an iPython interactive session and intialise the testbed
-
-```bash
-
-$ ipython
-
-from pprint import pprint
-from genie.conf import Genie
-from genie import parsergen
-
-
-testbed = Genie.init('vagrant_single_ios.yaml')
-uut = testbed.devices.iosxe1
-uut.connect()
-
-```      
+  
 
 Enter the following to assign the _marked up_ string to the variable markedupIOSX
 
@@ -133,7 +116,7 @@ f = open('markup.txt', 'r')
 markedupIOSX = f.read()
 
 #initiate testbed
-testbed = Genie.init('vagrant_single_ios.yaml')
+testbed = Genie.init('mocked_first.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
 

@@ -21,27 +21,9 @@ There are two methods by which we can retrieve this data - Manual regular expres
 ### Using Regular Expressions manually
 
 
-To start make sure that your Python Virtual Environment is still running from step 4 and that you are in 
-the scripts directory.
-Initiate an iPython interactive session and intialise the testbed
+   
 
-```bash
-
-$ ipython
-```
-
-```python
-from pprint import pprint
-from genie.conf import Genie
-from genie import parsergen
-
-testbed = Genie.init('vagrant_single_ios.yaml')
-uut = testbed.devices.iosxe1
-uut.connect()
-
-```      
-
-Create a dictionary of show commands. Only one show command for IOSXE in this instance
+First we need to create a dictionary of show commands. Only one show command for IOSXE in this instance
 
 ```python
 show_cmds = {
@@ -133,7 +115,7 @@ from genie import parsergen
 from pprint import pprint
 
 
-testbed = Genie.init('vagrant_single_ios.yaml')
+testbed = Genie.init('mocked_first.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
 

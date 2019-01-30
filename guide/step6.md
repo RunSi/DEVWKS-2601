@@ -8,22 +8,6 @@ but further details can be found at - [Metaparser](https://pubhub.devnetcloud.co
 
 ---
 
-If you have an iPython session running. Close and restart iPython
-
-Initiate an iPython interactive session and intialise the testbed
-
-```bash
-
-$ ipython
-
-from genie.conf import Genie
-testbed = Genie.init('vagrant_single_ios.yaml')
-uut = testbed.devices.iosxe1
-uut.connect()
-
-```    
-
-
 First we shall import from Genie ops the Base class.  We will create a class that will inherit from 'Base' to leverage the
 'Maker' functionality.  
 'Maker' simplifies the process of mapping parsers output to the ops object attributes. 
