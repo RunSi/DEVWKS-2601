@@ -87,7 +87,6 @@ myvxlan.info
 ```
 
 
-```
 
 ### You have successfully created a VxLAN Ops Model.
 
