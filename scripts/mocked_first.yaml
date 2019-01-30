@@ -1,10 +1,10 @@
 testbed:
     name: IOS_Testbed
     tacacs:
-        username: vagrant
+        username: cisco
     passwords:
-        tacacs: vagrant
-        enable: vagrant
+        tacacs: cisco
+        enable: cisco
 
 devices:
     iosxe1:
@@ -13,9 +13,8 @@ devices:
       os: iosxe
       connections:
         ssh:
-          protocol: ssh
-          ip: 127.0.0.1
-          port: 3122
+            command: mock_device_cli --os iosxe --mock_data_dir first_yaml --state connect
+            protocol: unknown     
       custom:
         abstraction:
           order: [os, type]
