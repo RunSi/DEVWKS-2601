@@ -18,32 +18,19 @@ interface_before.learn()
 
 ---
 
-Now use the Genie Conf class to reconfigure the device.
+Now we shall load another mock device to illustrate a bandwidth change
 
 ```python
-from genie.conf.base import Interface as Intf_conf
+testbed = Genie.init('mocked_second.yaml')
+uut = testbed.devices.iosxe1
 
-interface_cfg = Intf_conf(device=uut, name='GigabitEthernet3') 
+uut.connect()
 
-interface_cfg.bandwidth = 5000 
-
-```
-
-Review the configuration to check it is correct
-
-```python
-print(interface_cfg.build_config(apply=False)) 
-```
-
-Now apply configuration to the device
-
-```python
-interface_cfg.build_config() 
 ```
 ---
 
 
-Now enter the following code:-
+Now enter the following code to learn the state of the device after the change:-
 
 ```python
 interface_after = Interface(device=uut, attributes=['info[(.*)][bandwidth]'])
@@ -59,10 +46,6 @@ print(diff)
 
 ```
 
-Disconnect from the device
-```python
-uut.disconnect()
-```
 ---
 
 
@@ -177,7 +160,7 @@ from genie.conf import Genie
 
 from genie.libs.ops.interface.iosxe.interface import Interface
 
-testbed = Genie.init('vagrant_single_ios.yaml')
+testbed = Genie.init('mocked_first.yaml')
 
 uut = testbed.devices.iosxe1
 

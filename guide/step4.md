@@ -29,36 +29,13 @@ Interface  VNI        Multicast-group VNI state  Mode  BD    cfg vrf
 nve1       6001       N/A             Up         L2DP  1     CLI N/A 
 ```
 
-As can been seen above this is a column based/tabular output.  In order to parse this output we need to instruct
-parsergen as to the titles of the columns.  Follow the commands below to parse the command 'show nve vni'
-
-To start make sure that your Python Virtual Environment is still running from step 3 and that you are in 
-the scripts directory.
-If not already running initiate an iPython interactive session
-
-```bash
-
-$ ipython
-
-```
-
-As in previous sections initiate the testbed topology and import the relevant libraries for this exercise
-
-```python
-from pprint import pprint
-from genie.conf import Genie
-from genie import parsergen
-
-testbed = Genie.init('vagrant_single_ios.yaml')
-uut = testbed.devices.iosxe1
-uut.connect()
-
-```
 
 The testbed object 'uut.device' has a method of execute.  Execute will run the command on the device and return
 a string as the result of the command
 
 ```python
+from genie import parsergen
+
 output = uut.device.execute('show nve vni')
 ```
 
@@ -88,11 +65,6 @@ type(result.entries)
 
 As you will see the returned data is now structured data in the form of a dictionary
 
-Disconnect from the device
-```python
-uut.disconnect()
-```
-
 ---
 
 **Full Script**
@@ -107,7 +79,7 @@ import re
 from pprint import pprint
 
 #Create Testbed Object with Genie
-testbed = Genie.init('vagrant_single_ios.yaml')
+testbed = Genie.init('mocked_first.yaml')
 
 #Create Device Object
 uut = testbed.devices.iosxe1

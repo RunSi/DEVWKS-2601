@@ -7,17 +7,10 @@ will demonstrate the power of pyATS for automating and reporting on your testing
 
 ---
 
-Open a new terminal session and go to the scripts directory
+Run the following command in your terminal session
 
 ```bash
-cd ~/DEVWKS-2601/scripts
-
-```
-
-Now run the following command in your terminal session
-
-```bash
-easypy vxlancheckjob.py -html_logs . -no_archive -testbed_file vagrant_single_ios.yaml 
+easypy vxlancheckjob.py -html_logs . -no_archive -testbed_file mocked_first.yaml 
 ```
 
 Open up the Task.html file in the runinfo directory
@@ -29,42 +22,12 @@ open TaskLog.html
 ---
 
 
-From your terminal ssh into your device
-
-If the lab you are using is the Sandbox - ssh cisco@10.10.20.48   password cisco_1234!  
-
-If the lab you are using is a local vagrant machine - ssh -p 3122 vagrant@127.0.0.1 vagrant
-
-```bash
-conf t
-interface nve 1
-shut
-```
-
-Exit the session from your device and rerun Easypy
-
-```bash
-easypy vxlancheckjob.py -html_logs . -no_archive -testbed_file vagrant_single_ios.yaml 
-```
-
-And finally review the report and open the Task.html file
-
-```bash
-less runinfo/vxlancheckjob.xxxxxxxxxxxxxxx/vxlancheckjob.report
-
-open runinfo/vxlancheckjob.xxxxxxxxxxxxxxxx/TaskLog.html
-```
 
 
 ## Congratulations you have now finished the DEVWKS-2601 Workshop
 
 ---
 
-*Restore the laptop to it's initial state*
-
-```bash
-$ ./lab_cleanup.sh
-```
 
 ### Be sure to attend DEVWKS-2595 Stateful Network Validation using pyATS + GENIE
 
