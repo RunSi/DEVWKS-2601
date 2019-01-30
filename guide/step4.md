@@ -34,6 +34,8 @@ The testbed object 'uut.device' has a method of execute.  Execute will run the c
 a string as the result of the command
 
 ```python
+from genie import parsergen
+
 output = uut.device.execute('show nve vni')
 ```
 
@@ -62,11 +64,6 @@ type(result.entries)
 ```
 
 As you will see the returned data is now structured data in the form of a dictionary
-
-Disconnect from the device
-```python
-uut.disconnect()
-```
 
 ---
 

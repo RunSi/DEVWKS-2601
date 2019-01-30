@@ -7,14 +7,7 @@ will demonstrate the power of pyATS for automating and reporting on your testing
 
 ---
 
-Open a new terminal session and go to the scripts directory
-
-```bash
-cd ~/DEVWKS-2601/scripts
-
-```
-
-Now run the following command in your terminal session
+Run the following command in your terminal session
 
 ```bash
 easypy vxlancheckjob.py -html_logs . -no_archive -testbed_file mocked_first.yaml 
@@ -35,11 +28,6 @@ open TaskLog.html
 
 ---
 
-*Restore the laptop to it's initial state*
-
-```bash
-$ ./lab_cleanup.sh
-```
 
 ### Be sure to attend DEVWKS-2595 Stateful Network Validation using pyATS + GENIE
 
