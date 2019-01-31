@@ -4,9 +4,11 @@ In order to follow this lab change directory to:
 
 ```bash
 
-$ cd ~/workspace/DEVWKS-2601/DEVWKS-2601/
+cd ~/workspace/DEVWKS-2601/DEVWKS-2601/
 
-$ source lab_setup
+git pull
+
+source lab_setup
 
 
 ```
