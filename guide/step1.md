@@ -4,11 +4,10 @@ In order to follow this lab change directory to:
 
 ```bash
 
-$ cd ~/workspace/DEVWKS-2601/DEVWKS-2601/scripts/
+$ cd ~/workspace/DEVWKS-2601/DEVWKS-2601/
 
-$ git pull
+$ source lab_setup
 
-$ pip install genie --update
 
 ```
 

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source ../bin/activate
-cd lab_build
-Vagrant up
-cd ../scripts/
-open https://github.com/RunSi/DEVWKS-2601
+pip install -r requirements.txt
+cd scripts/
+#open https://github.com/RunSi/DEVWKS-2601

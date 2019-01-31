@@ -53,7 +53,7 @@ print(diff)
 
 As demonstrated the Ops library is an extremely useful set of tools for retrieving state data from your devices.  The
 preceding exercise only explored the Ops _Model_ for IOSXE Interfaces.  There are hundreds of further models at your disposal
-that support a vast range of features across IOSXE, IOSXR and NXOS.  To view the available models please go to [Model Wiki](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/genie_libs/#/models)
+that support a vast range of features across IOSXE, IOSXR and NXOS.  To view the available models please go to [Model Wiki](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/genie_libs/#/)
 
 
 
