@@ -2,3 +2,4 @@ genie
 ipython
 tabulate
 asyncssh
+jupyter

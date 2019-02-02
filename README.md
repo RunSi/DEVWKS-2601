@@ -34,14 +34,16 @@ The objective of this lab is to:
 * To become familiar with the Genie Parsergen library
 * To start the journey on creating your own libraries
 
+## The Testbed
+
+So as to provide the best experience in this lab the Genie Unicon Playback feature is being used.  Playback allows for the interaction with a device without the device actually existing.  If you wish to run the lab against a real or virtual device, then please modify the Topology file. 
+
 ## Pre-requisites
 
 Users of this lab should have some familiarity with Python and basic concepts of 
 object-oriented programming.
 
-The CSR1000v IOS-XE [Vagrant Boxes](https://www.vagrantup.com/docs/boxes.html) must be available on your system.  
-Instructions for creating the CSR1000v Boxes can be found at [Box Building](https://github.com/hpreston/vagrant_net_prog/tree/master/box_building)  
-CSR1000v Boxes must be named - _iosxe/16.08.01_ - Alternatively modify [Vagrantfile](/lab_build/Vagrantfile) to point to your local CSR1000v Box.
+
 
 
 ### To start please proceed to [Step1](/guide/step1.md)
