@@ -16,6 +16,36 @@ Further information on the Maker class can be found at [Maker](https://pubhub.de
 
 In addition we will import the parsers that were created earlier.
 
+
+
+### Before Proceeding
+
+Please exit current iPython session
+
+```bash
+exit
+```
+
+Start a new iPython session
+
+```bash
+ipython
+```
+
+
+
+Within the iPython session make a new connection to the test topology.
+
+```
+from pprint import pprint
+from genie.conf import Genie
+testbed = Genie.init('mocked_first.yaml')
+uut = testbed.devices.iosxe1
+uut.connect()
+```
+
+
+
 Enter the code below into your ipython session
 
 ```python

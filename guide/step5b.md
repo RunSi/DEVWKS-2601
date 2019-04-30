@@ -4,7 +4,35 @@ Rather than explicitly defining regular expressions for each item to retrieve, a
 we can use a special CLI command markup format that will automatically generate the regular
 expressions.
 
-  
+
+
+### Before Proceeding
+
+Please exit current iPython session
+
+```bash
+exit
+```
+
+Start a new iPython session
+
+```bash
+ipython
+```
+
+
+
+Within the iPython session make a new connection to the test topology.
+
+```
+from pprint import pprint
+from genie.conf import Genie
+testbed = Genie.init('mocked_first.yaml')
+uut = testbed.devices.iosxe1
+uut.connect()
+```
+
+
 
 Enter the following to assign the _marked up_ string to the variable markedupIOSX
 
@@ -73,7 +101,6 @@ pgfill.parse()
 pprint(parsergen.ext_dictio)
 
 ```
-
 
 ---
 

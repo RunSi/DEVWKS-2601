@@ -1,7 +1,5 @@
 # Getting Started
 
-**note** as of writing pyATS is only supported on python 3.6 and below.
-
 In order to follow this lab change directory to:
 
 ```bash
