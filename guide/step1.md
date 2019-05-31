@@ -8,7 +8,7 @@ cd ~/
 
 git clone http://github.com/RunSi/DEVWKS-2601
 
-source lab_setup
+source lab_setup.sh
 
 
 ```

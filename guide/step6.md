@@ -113,7 +113,7 @@ myvxlan = Vxlan(device=uut)
 myvxlan.learn()
 ```
 ```python
-myvxlan.info
+pprint(myvxlan.info)
 ```
 
 

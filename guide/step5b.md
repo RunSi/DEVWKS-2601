@@ -27,6 +27,7 @@ Within the iPython session make a new connection to the test topology.
 ```
 from pprint import pprint
 from genie.conf import Genie
+from genie import parsergen
 testbed = Genie.init('mocked_first.yaml')
 uut = testbed.devices.iosxe1
 uut.connect()
