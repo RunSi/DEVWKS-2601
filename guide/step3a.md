@@ -1,4 +1,4 @@
-### GENIE OPS Library
+### GENIE Parse and OPS Library
 
 
 The GENIE OPS Library is used to represent a device/feature's operational state/data through a Python Object. 
@@ -27,6 +27,26 @@ uut.connect()
 ```
 
 ---
+
+### The Parse Method
+
+Once a device object has been established we can leverage the Parse method in order to parse the output of a show command and return structured data.  
+
+
+
+```python
+intfs = uut.parse('show interfaces')
+```
+
+The returned data is a python dictionary.  The keys can be determined
+
+```python
+intfs.keys()
+```
+
+
+
+### Using Ops
 
 ### Learn the state of the interfaces on the device under test (iosxe1)
 
