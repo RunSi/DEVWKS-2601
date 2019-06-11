@@ -4,9 +4,7 @@ In order to follow this lab change directory to:
 
 ```bash
 
-cd ~/
-
-git clone http://github.com/RunSi/DEVWKS-2601
+cd ~/workspace/DEVWKS-2601
 
 source lab_setup.sh
 
