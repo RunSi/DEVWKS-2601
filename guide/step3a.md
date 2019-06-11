@@ -6,19 +6,8 @@ Each feature on each device is represented via a single Ops object instance, whe
 information is stored as an object attribute.
 
 Ops objects are snapshots of a particular feature on a particular device at a specific time.
- 
+
 To demonstrate the power of the GENIE OPS library then please follow the sections below.
-
-
-Import the Topology library and the Ops Interface Model(Class) and instantiate the topology object (referred to in this example as _testbed_)
-
-```python
-
-from genie.libs.ops.interface.iosxe.interface import Interface
-
-
-```
-
 
 Access to the devices needs to be established prior to sending any additional GENIE API calls to the device, leveraging
 the topology _connect_ method. 
@@ -37,7 +26,6 @@ uut = testbed.devices.iosxe1
 uut.connect()
 ```
 
-
 ---
 
 ### Learn the state of the interfaces on the device under test (iosxe1)
@@ -50,13 +38,11 @@ relevant show commands to an IOSXE device.  The output of the show commands will
 as a single structured data entity(dictionary).
 
 ```python
-interface = Interface(device=uut)
-
-interface.learn()
+interface = uut.learn('interface')
 ```
 
 The data that is parsed and collated is stored as a single entry under the _info_ attribute of the interface object.
-  
+
 To view all the returned data:-
 
 ```python

@@ -11,8 +11,7 @@ initiate the learn method, you are effectively taking a snapshot of current stat
 The code below will demonstrate, please enter into iPython:-
 
 ```python
-interface_before = Interface(device=uut, attributes=['info[(.*)][bandwidth]'])
-interface_before.learn()
+interface_before = uut.learn('interface', attributes=['info[(.*)][bandwidth]'])  
 
 ```
 
@@ -33,8 +32,7 @@ uut.connect()
 Now enter the following code to learn the state of the device after the change:-
 
 ```python
-interface_after = Interface(device=uut, attributes=['info[(.*)][bandwidth]'])
-interface_after.learn()
+interface_after = uut.learn('interface', attributes=['info[(.*)][bandwidth]']) 
 
 ```
 
@@ -67,14 +65,12 @@ Rather than retrieving the entire state you can choose to only save the attribut
 For example we only wish to retrieve the Mac Addresses of the interfaces.  To achieve this
 
 ```python
-interface = Interface(device=uut, attributes=['info[(.*)][mac_address]'])
+interface = uut.learn('interface', attributes=['info[(.*)][mac_address]'])
 ```
 
-Now 'relearn' the interface object and display the output
+Now display the output of the interface object
 
 ```python
-interface.learn()
-
 pprint(interface.info)
 
 ```
@@ -107,7 +103,7 @@ def verify_interface_status(obj):
 interface.learn_poll(verify=verify_interface_status, sleep=3, attempt=3)
 
 ````
- 
+
 ---
 
 Now use the Genie Conf class to reconfigure the device.
