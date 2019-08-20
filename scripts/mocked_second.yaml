@@ -1,10 +1,11 @@
 testbed:
     name: IOS_Testbed
-    tacacs:
-        username: cisco
-    passwords:
-        tacacs: cisco
-        enable: cisco
+    credentials:
+         default:
+           username: cisco      
+           password: cisco
+         enable:
+           password: cisco
 
 devices:
     iosxe1:

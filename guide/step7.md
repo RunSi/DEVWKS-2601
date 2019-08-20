@@ -32,4 +32,4 @@ open TaskLog.html
 ### Be sure to attend DEVWKS-2595 Stateful Network Validation using pyATS + GENIE
 
 
-[Beginning](../README.md)   [Back](./step6.md)  [Next](./step1.md)
+[Beginning](../README.md)   [Back](./step6.md)  [Next](../README.md)
