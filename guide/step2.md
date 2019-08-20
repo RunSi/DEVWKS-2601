@@ -21,11 +21,13 @@ The topology file for this lab is displayed below.  The topology file describes 
 
 testbed:
     name: IOS_Testbed
-    tacacs:
-        username: vagrant
-    passwords:
-        tacacs: vagrant
-        enable: vagrant
+    credentials:
+          default: 
+            username: vagrant
+            password: vagrant
+          enable:
+            password: vagrant
+        
 
 devices:
     iosxe1:
