@@ -6,7 +6,9 @@ In order to follow this lab change directory to:
 
 cd ~/workspace/DEVWKS-2601
 
-source lab_setup.sh
+source venv/bin/activate
+
+cd scripts
 
 
 ```
