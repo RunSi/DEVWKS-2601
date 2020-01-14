@@ -10,13 +10,13 @@ will demonstrate the power of pyATS for automating and reporting on your testing
 Run the following command in your terminal session
 
 ```bash
-easypy vxlancheckjob.py -html_logs . -no_archive -testbed_file mocked_first.yaml 
+pyats run job vxlancheckjob.py  --testbed-file mocked_first.yaml 
 ```
 
 Open up the Task.html file in the runinfo directory
 
 ```bash
-open TaskLog.html
+pyats logs view
 ```
 
 ---
